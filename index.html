@@ -17,24 +17,21 @@
 :root{
   --night:#16172e; --night-2:#22244a;
   --light:#f6f6fb; --paper:#ffffff;
-  --ink:#16172e; --soft:#5d6080; --rule:#dedff0;
-  --c1:#3d6bff; /* reliability */
-  --c2:#12b5a5; /* paved road */
-  --c3:#8a5cf6; /* audit */
-  --c4:#f5a524; /* cost */
-  --c5:#ff5a5f; /* incidents */
+  --ink:#16172e; --soft:#5d6080; --rule:#dedff0; --grey:#9a9db8;
+  --c1:#3d6bff; --c2:#12b5a5; --c3:#8a5cf6; --c4:#f5a524; --c5:#ff5a5f;
   --display:"Bricolage Grotesque",system-ui,sans-serif;
   --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --doc:"Source Serif 4",Georgia,serif;
   --ease:cubic-bezier(.2,.8,.2,1);
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--light);color:var(--ink);font:400 17px/1.55 var(--sans)}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--c1);outline-offset:3px;border-radius:4px}
 .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
 h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.02em}
+.k1{--k:var(--c1)}.k2{--k:var(--c2)}.k3{--k:var(--c3)}.k4{--k:var(--c4)}.k5{--k:var(--c5)}
 
 /* ---------- hero ---------- */
 .hero{background:var(--night);color:#fff;overflow:hidden;position:relative}
@@ -45,105 +42,150 @@ h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.02em}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:56px 0 110px}
 .hero h1{font-size:clamp(40px,5.6vw,72px);line-height:1;font-weight:800}
 .hero p.sub{font-size:20px;color:#c9cbef;margin:24px 0 34px;max-width:30em}
-.btn{display:inline-block;font:600 16px/1 var(--sans);padding:16px 22px;border-radius:999px;text-decoration:none}
+.btn{display:inline-block;font:600 16px/1 var(--sans);padding:16px 22px;border-radius:999px;text-decoration:none;border:0;cursor:pointer}
 .btn.solid{background:#fff;color:var(--night)}
-.btn.line{color:#fff;border:1.5px solid #4a4d85;margin-left:8px}
+.btn.line{color:#fff;border:1.5px solid #4a4d85}
 .hero .btns{display:flex;flex-wrap:wrap;gap:10px}
-
-/* hero art: messy documents snap into line */
 .art{position:relative;height:440px}
 .mini{position:absolute;width:46%;background:#fff;border-radius:10px;padding:16px 16px 14px;box-shadow:0 18px 40px -16px rgba(0,0,0,.55);animation:settle 1.1s var(--ease) 1.1s both}
 .mini b{display:block;font:600 12px/1 var(--sans);color:var(--soft);margin-bottom:12px}
-.mini i{display:block;height:9px;border-radius:5px;background:#e3e4ef;margin:7px 0;animation:tint .7s ease both}
-.m1{left:2%;top:4%;--r:-9deg;--x:-22px;--y:18px}
-.m2{right:2%;top:0;--r:7deg;--x:30px;--y:-10px}
-.m3{left:6%;bottom:2%;--r:6deg;--x:-30px;--y:24px}
-.m4{right:0;bottom:6%;--r:-6deg;--x:26px;--y:30px}
+.mini i{display:block;height:9px;border-radius:5px;background:#e3e4ef;margin:7px 0;animation:tint .7s ease both;animation-delay:calc(2.1s + var(--d,0s))}
+.m1{left:2%;top:4%;--r:-9deg;--x:-22px;--y:18px}.m2{right:2%;top:0;--r:7deg;--x:30px;--y:-10px}
+.m3{left:6%;bottom:2%;--r:6deg;--x:-30px;--y:24px}.m4{right:0;bottom:6%;--r:-6deg;--x:26px;--y:30px}
 @keyframes settle{from{transform:translate(var(--x),var(--y)) rotate(var(--r))}to{transform:none}}
-.mini i.k1{--k:var(--c1)}.mini i.k2{--k:var(--c2)}.mini i.k3{--k:var(--c3)}.mini i.k4{--k:var(--c4)}.mini i.k5{--k:var(--c5)}
 @keyframes tint{from{background:#e3e4ef}to{background:var(--k)}}
-.mini i{animation-delay:calc(2.1s + var(--d,0s))}
 .art .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--c1) 0 20%,var(--c2) 0 40%,var(--c3) 0 60%,var(--c4) 0 80%,var(--c5) 0);display:grid;place-items:center;animation:pop .7s var(--ease) 1.7s both;box-shadow:0 0 0 10px var(--night)}
 .art .core span{width:104px;height:104px;border-radius:50%;background:var(--night);display:grid;place-items:center;text-align:center;font:700 14px/1.15 var(--display);color:#fff;padding:8px}
 @keyframes pop{from{transform:translate(-50%,-50%) scale(0)}to{transform:translate(-50%,-50%) scale(1)}}
+.hero h1,.hero .sub,.hero .btns{animation:rise .8s var(--ease) both}
+.hero .sub{animation-delay:.12s}.hero .btns{animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 .scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);font-size:14px;color:#9a9dcc;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:6px}
 .scrollcue::after{content:"";width:2px;height:26px;background:linear-gradient(#9a9dcc,transparent);animation:cue 1.8s ease-in-out infinite}
 @keyframes cue{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(6px);opacity:1}}
 
-/* ---------- story (sticky) ---------- */
-.story{position:relative;display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
-.steps{padding:10vh 0 30vh}
-.step{min-height:80vh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .5s ease}
-.step.on{opacity:1}
-.step .n{font:700 15px/1 var(--display);color:var(--soft);margin-bottom:14px}
-.step h2{font-size:clamp(28px,3.2vw,42px);line-height:1.08;font-weight:700}
-.step p{color:var(--soft);font-size:18px;margin:16px 0 0;max-width:28em}
-.stagewrap{position:sticky;top:0;height:100vh;display:flex;align-items:center}
-.stage{position:relative;width:100%;background:#fff;border-radius:22px;padding:26px;box-shadow:0 30px 70px -40px rgba(22,23,46,.45);transition:background .6s ease}
-.stage[data-step="1"]{background:var(--night)}
+/* ---------- the journey ---------- */
+.journey{position:relative;background:var(--light)}
+.jv{position:relative}
 
-.chips{display:flex;flex-wrap:wrap;gap:8px;min-height:40px;margin-bottom:16px}
-.chip{font:600 13.5px/1.2 var(--sans);color:#fff;padding:9px 13px;border-radius:999px;opacity:0;transform:translateY(10px) scale(.9);transition:opacity .45s var(--ease),transform .45s var(--ease)}
-.chip.a{background:var(--c1)}.chip.b{background:var(--c2)}.chip.c{background:var(--c3)}.chip.d{background:var(--c4);color:var(--ink)}.chip.e{background:var(--c5)}
-.stage[data-step="2"] .chip,.stage[data-step="3"] .chip,.stage[data-step="4"] .chip{opacity:1;transform:none}
-.chip:nth-child(2){transition-delay:.1s}.chip:nth-child(3){transition-delay:.2s}.chip:nth-child(4){transition-delay:.3s}.chip:nth-child(5){transition-delay:.4s}
+/* Mei */
+.mei{width:64px;height:128px;--shirt:var(--grey)}
+.mei svg{width:100%;height:100%;overflow:visible}
+.mei .shirt{fill:var(--shirt);transition:fill .6s ease}
+.mei .leg{transform-box:fill-box;transform-origin:50% 0}
+.mei .arm{transform-box:fill-box;transform-origin:50% 0}
+.mei.walking .l1,.mei.walking .a2{animation:swing .42s ease-in-out infinite alternate}
+.mei.walking .l2,.mei.walking .a1{animation:swing .42s ease-in-out infinite alternate-reverse}
+.mei.walking .body{animation:bob .21s ease-in-out infinite alternate}
+@keyframes swing{from{transform:rotate(18deg)}to{transform:rotate(-18deg)}}
+@keyframes bob{to{transform:translateY(-2px)}}
+.mei.good{--shirt:var(--c1)}
+.mei .badge{opacity:0;transition:opacity .5s ease}
+.mei.good .badge{opacity:1}
 
-.docs{display:grid;grid-template-columns:1fr 1fr;gap:14px;transition:opacity .5s ease}
-.stage[data-step="1"] .docs{opacity:.05}
-.stage[data-step="2"] .docs{opacity:.18}
-.doc{background:var(--light);border-radius:14px;padding:16px 16px 14px;transition:transform .8s var(--ease),background .5s ease;position:relative}
-.stage[data-step="0"] .doc{transform:rotate(var(--r)) translate(var(--x),var(--y))}
-.doc:nth-child(1){--r:-2.5deg;--x:-6px;--y:6px}.doc:nth-child(2){--r:2deg;--x:8px;--y:-4px}.doc:nth-child(3){--r:1.5deg;--x:-4px;--y:10px}.doc:nth-child(4){--r:-2deg;--x:6px;--y:4px}
-.doc h3{font:600 13px/1.2 var(--sans);color:var(--soft);margin:0 0 10px;letter-spacing:0;display:flex;justify-content:space-between}
-.doc .swapbox{display:grid}
-.doc .bad,.doc .good{grid-area:1/1;transition:opacity .45s ease}
-.doc .good{opacity:0}
-.stage[data-step="3"] .doc .bad,.stage[data-step="4"] .doc .bad{opacity:0}
-.stage[data-step="3"] .doc .good,.stage[data-step="4"] .doc .good{opacity:1}
-.doc p{margin:0;font:400 15px/1.42 var(--doc)}
-.doc .good p{margin:0 0 8px;padding-left:12px;border-left:4px solid var(--k)}
-.doc .good p:last-child{margin-bottom:0}
-.k1{--k:var(--c1)}.k2{--k:var(--c2)}.k3{--k:var(--c3)}.k4{--k:var(--c4)}.k5{--k:var(--c5)}
-.flag{position:absolute;top:-9px;right:-6px;background:var(--c5);color:#fff;font:700 12px/1 var(--sans);padding:6px 9px;border-radius:999px;transition:opacity .3s ease,transform .3s ease}
-.stage:not([data-step="0"]) .flag{opacity:0;transform:scale(.6)}
-
-.question{position:absolute;inset:0;display:grid;place-items:center;padding:40px;text-align:center;pointer-events:none;opacity:0;transition:opacity .5s ease}
-.question p{font:800 clamp(28px,3.4vw,46px)/1.08 var(--display);color:#fff;margin:0;letter-spacing:-.02em}
-.question p span{display:block;font:500 17px/1.4 var(--sans);color:#9a9dcc;margin-top:18px;letter-spacing:0}
-.stage[data-step="1"] .question{opacity:1}
-.stage[data-step="1"] .chips{opacity:0}
-
-/* change step */
+/* documents along the path */
+.card{background:#fff;border-radius:16px;padding:20px 22px;box-shadow:0 24px 50px -30px rgba(22,23,46,.45);width:min(400px,34vw)}
+.card .stop{font:700 14px/1.2 var(--display);color:var(--soft);margin:0 0 4px}
+.card h3{font-size:24px;line-height:1.1;font-weight:700;margin:0 0 14px}
+.card .say{font:500 15px/1.4 var(--sans);color:var(--soft);margin:14px 0 0}
+.paper{background:var(--light);border-radius:10px;padding:14px 14px 12px;position:relative}
+.paper .kind{font:600 12px/1 var(--sans);color:var(--soft);margin:0 0 9px}
+.paper p{margin:0;font:400 15px/1.42 var(--doc)}
+.paper p+p{margin-top:8px}
+.paper p.l{padding-left:11px;border-left:4px solid var(--k)}
+.bad .paper{transform:rotate(-1.5deg)}
+.bad .paper p{color:#5f6176}
+.flag{position:absolute;top:-10px;right:-8px;background:var(--c5);color:#fff;font:700 12px/1 var(--sans);padding:6px 9px;border-radius:999px}
+.score{list-style:none;margin:0;padding:0}
+.score li{display:flex;justify-content:space-between;gap:10px;padding:6px 0 6px 11px;border-left:4px solid var(--k);font:400 15px/1.35 var(--doc)}
+.score li+li{margin-top:6px}
+.score b{font:700 13px/1.35 var(--sans);color:var(--k);white-space:nowrap}
 .alt{display:none}
-.stage[data-step="4"] .k4 .was{display:none}
-.stage[data-step="4"] .k4 .alt,.stage[data-step="4"] .chip.d .alt{display:inline}
-.stage[data-step="4"] .chip.d .was{display:none}
-.stage[data-step="4"] .k4,.stage[data-step="4"] .chip.d{animation:flash 1.2s ease 2}
-@keyframes flash{0%,100%{background-color:transparent}40%{background-color:color-mix(in srgb,var(--c4) 30%,transparent)}}
-.stage[data-step="4"] .chip.d{animation:pulse 1.2s ease 2}
-@keyframes pulse{50%{box-shadow:0 0 0 8px color-mix(in srgb,var(--c4) 35%,transparent)}}
+.changed .alt{display:inline}
+.changed .was{display:none}
+.changed .k4.l,.changed .score .k4{animation:flash 1.1s ease 3}
+@keyframes flash{50%{background:color-mix(in srgb,var(--c4) 55%,transparent)}}
+.changed .k4.l,.changed .score .k4{background:color-mix(in srgb,var(--c4) 22%,transparent)}
 
-/* ---------- after the story ---------- */
+.intro h3{font-size:30px}
+.drift{width:min(460px,38vw)}
+.drift p{font:800 clamp(26px,2.6vw,38px)/1.08 var(--display);margin:0;letter-spacing:-.02em}
+.drift span{display:block;font:500 16px/1.4 var(--sans);color:var(--soft);margin-top:12px}
+
+/* overlays (question, outcomes, coda) */
+.question{text-align:center}
+.question .rw{font:700 15px/1 var(--display);color:#9a9dcc;margin-bottom:18px;display:inline-flex;align-items:center;gap:8px}
+.question .rw svg{width:20px;height:20px}
+.question p{font:800 clamp(30px,4vw,58px)/1.04 var(--display);margin:0;letter-spacing:-.025em;color:#fff;max-width:18ch;margin-inline:auto}
+.outcomes .lead{font:700 15px/1.3 var(--display);color:var(--soft);margin:0 0 14px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;list-style:none;margin:0;padding:0}
+.chip{background:var(--k);color:#fff;border-radius:16px;padding:12px 16px;max-width:230px}
+.chip.k4{color:var(--ink)}
+.chip b{display:block;font:700 16px/1.2 var(--display)}
+.chip b i{font-style:normal}
+.chip span{display:block;font:400 13px/1.35 var(--sans);opacity:.9;margin-top:3px}
+.coda h2{font-size:clamp(26px,3vw,40px);line-height:1.05;font-weight:800}
+.coda p{color:var(--soft);margin:10px 0 0;max-width:30em}
+
+/* --- cinematic mode (desktop, motion allowed) --- */
+.cine .journey{height:1500vh}
+.cine .jv{position:sticky;top:0;height:100vh;overflow:hidden}
+.cine .world{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+.cine .world > *{position:absolute}
+.cine .track{pointer-events:none}
+.cine .mei{z-index:3}
+.cine .ov{position:absolute;z-index:4;pointer-events:none;transition:opacity .35s ease}
+.cine .shade{position:absolute;inset:0;background:var(--night);opacity:0;z-index:4;pointer-events:none}
+.cine .question{inset:0;display:grid;place-content:center;padding:40px;opacity:0}
+.cine .outcomes{left:50%;top:50%;transform:translate(-50%,-50%);width:min(1000px,90vw);opacity:0;transition:transform .7s var(--ease),opacity .35s ease,width .7s var(--ease)}
+.cine .outcomes .chips{justify-content:center}
+.cine .outcomes.legend{left:28px;top:22px;transform:none;width:auto;max-width:calc(100vw - 56px)}
+.cine .outcomes.legend .lead{display:none}
+.cine .outcomes.legend .chips{justify-content:flex-start;gap:6px}
+.cine .outcomes.legend .chip{padding:7px 12px;border-radius:999px;max-width:none}
+.cine .outcomes.legend .chip span{display:none}
+.cine .outcomes.legend .chip b{font-size:13px}
+.cine .outcomes .chip{opacity:0;transform:translateY(14px) scale(.92);transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.cine .outcomes.show .chip{opacity:1;transform:none}
+.cine .outcomes.show .chip:nth-child(2){transition-delay:.08s}.cine .outcomes.show .chip:nth-child(3){transition-delay:.16s}.cine .outcomes.show .chip:nth-child(4){transition-delay:.24s}.cine .outcomes.show .chip:nth-child(5){transition-delay:.32s}
+.cine .coda{left:28px;bottom:28px;max-width:560px;opacity:0;background:#fff;border-radius:18px;padding:22px 26px;box-shadow:0 24px 50px -30px rgba(22,23,46,.45)}
+.cine .coda button{display:none}
+.cine .progress{position:absolute;left:0;bottom:0;height:5px;width:100%;transform-origin:0 50%;background:linear-gradient(90deg,var(--grey) 0 30%,var(--c1) 30%,var(--c2),var(--c3),var(--c4),var(--c5));z-index:5;transform:scaleX(0)}
+
+/* --- static mode (phones, reduced motion) --- */
+.static .jv{display:flex;flex-direction:column;gap:22px;padding:72px 16px 96px 64px;max-width:640px;margin:0 auto}
+.static .jv::before{content:"";position:absolute;left:30px;top:72px;bottom:96px;width:6px;border-radius:3px;background:linear-gradient(var(--grey) 0 32%,var(--c1) 34%,var(--c2) 52%,var(--c3) 68%,var(--c4) 84%,var(--c5))}
+.static .world{display:contents}
+.static .track,.static .shade,.static .progress{display:none}
+.static .mei{order:0;position:sticky;top:42vh;height:0;width:40px;margin-left:-58px;z-index:3;align-self:flex-start}
+.static .mei svg{height:80px;width:40px;transform:translateY(-40px)}
+.static .card,.static .drift{width:auto}
+.static .question{order:6;background:var(--night);border-radius:18px;padding:34px 24px}
+.static .question p{font-size:30px}
+.static .outcomes{order:7}
+.static .chip{max-width:none;flex:1 1 100%}
+.static .coda{order:14;background:#fff;border-radius:18px;padding:22px}
+.static .coda button{margin-top:16px;background:var(--c4);color:var(--ink)}
+.static [data-o="1"]{order:1}.static [data-o="2"]{order:2}.static [data-o="3"]{order:3}.static [data-o="4"]{order:4}.static [data-o="5"]{order:5}
+.static [data-o="8"]{order:8}.static [data-o="9"]{order:9}.static [data-o="10"]{order:10}.static [data-o="11"]{order:11}.static [data-o="12"]{order:12}.static [data-o="13"]{order:13}
+.static .bad .paper{transform:none}
+
+/* ---------- after the journey ---------- */
 .band{padding:120px 0}
 .band h2{font-size:clamp(32px,4.2vw,56px);line-height:1.02;font-weight:800;max-width:16ch}
 .band .lead{font-size:20px;color:var(--soft);max-width:34em;margin:20px 0 0}
 .get{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
-.pack{border-radius:22px;padding:34px;color:#fff;position:relative;overflow:hidden}
-.pack.role{background:var(--c1)}
-.pack.fn{background:var(--c3)}
+.pack{border-radius:22px;padding:34px;color:#fff}
+.pack.role{background:var(--c1)}.pack.fn{background:var(--c3)}
 .pack h3{font-size:26px;font-weight:700;margin-bottom:18px}
 .pack ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.pack li{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:8px 14px;font-size:15px;font-weight:500;opacity:0;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
-.get.in li{opacity:1;transform:none}
-.get.in li:nth-child(2){transition-delay:.08s}.get.in li:nth-child(3){transition-delay:.16s}.get.in li:nth-child(4){transition-delay:.24s}.get.in li:nth-child(5){transition-delay:.32s}.get.in li:nth-child(6){transition-delay:.4s}
+.pack li{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:8px 14px;font-size:15px;font-weight:500}
 .pack p{margin:22px 0 0;color:rgba(255,255,255,.85);font-size:16px}
-
 .who{background:#fff}
 .people{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
 .person{border-top:6px solid var(--k);padding-top:20px}
 .person h3{font-size:22px;font-weight:700}
 .person p{color:var(--soft);margin:10px 0 0}
-
 .path{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;position:relative;counter-reset:p}
 .path::before{content:"";position:absolute;left:22px;right:22px;top:22px;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--c2),var(--c1),var(--c3))}
 .path li{position:relative;counter-increment:p}
@@ -154,39 +196,20 @@ h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.02em}
 .promise div{background:#fff;border-radius:18px;padding:26px}
 .promise h3{font-size:20px;font-weight:700;margin-bottom:8px}
 .promise p{margin:0;color:var(--soft)}
-
 .end{background:var(--night);color:#fff;position:relative;overflow:hidden}
 .end .wrap{position:relative;padding-top:120px;padding-bottom:70px}
-.threads{position:absolute;inset:0;opacity:.9;pointer-events:none}
+.threads{position:absolute;inset:0;pointer-events:none}
 .threads i{position:absolute;left:-10%;height:4px;width:120%;border-radius:2px;background:var(--k);opacity:.28;transform:rotate(-8deg)}
 .end .norman{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:start;margin-bottom:110px}
 .end h2{font-size:clamp(32px,4.2vw,56px);line-height:1.02;font-weight:800}
 .end .norman p{color:#c9cbef;font-size:19px;margin:0 0 12px}
 .end .ask p{color:#c9cbef;font-size:20px;margin:0 0 14px;max-width:32em}
-.end a.big{display:inline-block;font:800 clamp(30px,5.6vw,74px)/1.05 var(--display);letter-spacing:-.03em;color:#fff;text-decoration:none;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c5));background-size:100% 6px;background-repeat:no-repeat;background-position:0 100%;padding-bottom:10px;word-break:break-word}
+.end a.big{display:inline-block;font:800 clamp(28px,5.6vw,74px)/1.05 var(--display);letter-spacing:-.03em;color:#fff;text-decoration:none;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c5));background-size:100% 6px;background-repeat:no-repeat;background-position:0 100%;padding-bottom:10px;word-break:break-word}
 .end footer{margin-top:90px;color:#8f92c4;font-size:14px}
-
-/* reveal for the hero copy only */
-.hero h1,.hero .sub,.hero .btns{animation:rise .8s var(--ease) both}
-.hero .sub{animation-delay:.12s}.hero .btns{animation-delay:.24s}
-@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
 @media (max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:20px;padding:30px 0 90px}
   .art{height:330px}
-  .story{grid-template-columns:1fr;gap:0}
-  .stagewrap{height:auto;top:0;padding:10px 0;z-index:2;background:var(--light)}
-  .stage{padding:14px;border-radius:16px}
-  .doc{padding:10px 10px 9px;border-radius:10px}
-  .doc h3{font-size:11px;margin-bottom:6px}
-  .doc p{font-size:11.5px;line-height:1.35}
-  .doc .good p{padding-left:8px;border-left-width:3px;margin-bottom:5px}
-  .doc .good p:nth-child(3){display:none}
-  .chip{font-size:11px;padding:6px 9px}
-  .chips{gap:5px;margin-bottom:10px;min-height:28px}
-  .stagewrap{order:1}
-  .steps{order:2;padding:4vh 0 20vh}
-  .step{min-height:60vh}
   .get,.people,.promise,.end .norman{grid-template-columns:1fr}
   .path{grid-template-columns:1fr}
   .path::before{left:22px;right:auto;top:22px;bottom:22px;width:6px;height:auto;background:linear-gradient(var(--c2),var(--c1),var(--c3))}
@@ -197,14 +220,11 @@ h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.02em}
 @media (max-width:520px){
   .wrap{padding:0 16px}
   .nav a.mail{display:none}
-  .btn.line{margin-left:0}
   .pack{padding:26px}
-  .question p{font-size:24px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .mini i.k1{background:var(--c1)}.mini i.k2{background:var(--c2)}.mini i.k3{background:var(--c3)}.mini i.k4{background:var(--c4)}.mini i.k5{background:var(--c5)}
-  .pack li{opacity:1;transform:none}
+  .mini i{background:var(--k)}
 }
 </style>
 </head>
@@ -221,7 +241,7 @@ h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.02em}
         <h1>Hire, onboard and grow people against the same definition of success.</h1>
         <p class="sub">Most companies describe a role differently in every document. Talent Engine writes down what success looks like once, then builds every document from it.</p>
         <div class="btns">
-          <a class="btn solid" href="#story">See how it works</a>
+          <a class="btn solid" href="#journey">Follow one hire</a>
           <a class="btn line" href="#start">Try it on one of your roles</a>
         </div>
       </div>
@@ -234,104 +254,165 @@ h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.02em}
       </div>
     </div>
   </div>
-  <a class="scrollcue" href="#story">Scroll</a>
+  <a class="scrollcue" href="#journey">Scroll</a>
 </header>
 
 <main>
-<section class="story wrap" id="story" aria-label="How Talent Engine works">
-  <div class="steps">
-    <article class="step" data-step="0">
-      <div class="n">One role, four documents</div>
-      <h2>Here is a senior engineer, as most companies describe the job.</h2>
-      <p>The ad wants a rockstar. The interview asks about weaknesses. Onboarding is a laptop and a wiki. Promotion is time served. Four documents, four different jobs.</p>
-    </article>
-    <article class="step" data-step="1">
-      <div class="n">The missing question</div>
-      <h2>They disagree because nobody answered one question.</h2>
-      <p>Each document was written at a different time, by a different person. None of them started from what the role is for.</p>
-    </article>
-    <article class="step" data-step="2">
-      <div class="n">The answer</div>
-      <h2>Answer it in outcomes you could check after a year.</h2>
-      <p>For this role, five of them. Each one is specific enough to measure, and each gets its own colour.</p>
-    </article>
-    <article class="step" data-step="3">
-      <div class="n">The cascade</div>
-      <h2>Then build every document from those five.</h2>
-      <p>Follow the colours. Every line in the ad, every interview question, every onboarding task and every step to the next level traces back to an outcome.</p>
-    </article>
-    <article class="step" data-step="4">
-      <div class="n">When things change</div>
-      <h2>When the role changes, change the outcome once.</h2>
-      <p>The cost target moves from 20% to 30%. The ad, the interview and the onboarding plan follow, and nothing drifts out of step.</p>
-    </article>
-  </div>
+<section class="journey" id="journey" aria-label="One hire, followed through the company">
+  <div class="jv" id="jv">
+    <div class="world" id="world">
 
-  <div class="stagewrap">
-    <div class="stage" id="stage" data-step="0" aria-hidden="true">
-      <div class="chips">
-        <span class="chip a">Reliable services</span>
-        <span class="chip b">Teams ship on their own</span>
-        <span class="chip c">Audit-ready</span>
-        <span class="chip d">Cost <span class="was">−20%</span><span class="alt">−30%</span></span>
-        <span class="chip e">Calm incidents</span>
+      <svg class="track" id="track1" aria-hidden="true"></svg>
+      <svg class="track" id="track2" aria-hidden="true"></svg>
+
+      <div class="mei" id="mei" aria-hidden="true">
+        <svg viewBox="0 0 64 128">
+          <g class="leg l1"><rect x="22" y="70" width="9" height="44" rx="4.5" fill="#16172e"/><rect x="19" y="108" width="15" height="8" rx="4" fill="#16172e"/></g>
+          <g class="leg l2"><rect x="33" y="70" width="9" height="44" rx="4.5" fill="#2b2d55"/><rect x="31" y="108" width="15" height="8" rx="4" fill="#2b2d55"/></g>
+          <g class="body">
+            <rect class="arm a1" x="12" y="36" width="8" height="32" rx="4" fill="#e9b893"/>
+            <rect class="arm a2" x="44" y="36" width="8" height="32" rx="4" fill="#e9b893"/>
+            <rect class="shirt" x="16" y="32" width="32" height="44" rx="12"/>
+            <circle class="badge" cx="40" cy="44" r="4" fill="#f5a524"/>
+            <rect x="28" y="25" width="8" height="9" rx="3" fill="#e9b893"/>
+            <circle cx="32" cy="17" r="12" fill="#e9b893"/>
+            <path d="M19 19c-1-10 5-16 13-16s14 6 13 16c-2-5-6-8-13-8s-11 3-13 8z" fill="#22243a"/>
+            <path d="M19 17c0 7-1 11-3 13 4 0 6-2 7-6zM45 17c0 7 1 11 3 13-4 0-6-2-7-6z" fill="#22243a"/>
+          </g>
+        </svg>
       </div>
-      <div class="docs">
-        <div class="doc"><span class="flag">Rockstar?</span>
-          <h3>Job ad</h3>
-          <div class="swapbox">
-            <div class="bad"><p>We're looking for a DevOps rockstar who thrives in a fast-paced environment and loves new tech!</p></div>
-            <div class="good">
-              <p class="k1">Set service levels for every customer-facing service, and hit them.</p>
-              <p class="k2">Build the road that lets 60 engineers ship safely, every day.</p>
-              <p class="k4">Cut cloud cost per customer by <span class="was">a fifth</span><span class="alt">a third</span>.</p>
-            </div>
-          </div>
-        </div>
-        <div class="doc"><span class="flag">Weakness?</span>
-          <h3>Interview guide</h3>
-          <div class="swapbox">
-            <div class="bad"><p>Tell me about yourself. What is your greatest weakness? Where do you see yourself in five years?</p></div>
-            <div class="good">
-              <p class="k1">Tell me about a service level you set. What happened when it slipped?</p>
-              <p class="k5">Walk me through the worst incident you led, minute by minute.</p>
-              <p class="k4">When did a cloud bill last surprise you? What did you change?</p>
-            </div>
-          </div>
-        </div>
-        <div class="doc"><span class="flag">Laptop?</span>
-          <h3>Onboarding plan</h3>
-          <div class="swapbox">
-            <div class="bad"><p>Week 1: collect laptop, HR induction, read the team wiki. Then get stuck in.</p></div>
-            <div class="good">
-              <p class="k1">Days 31–60: agree service levels for the three most critical journeys.</p>
-              <p class="k4">Turn on cost tagging; send the first spend report by team<span class="alt">, against the 30% target</span>.</p>
-              <p class="k3">Days 61–90: close one audit finding with a platform control.</p>
-            </div>
-          </div>
-        </div>
-        <div class="doc"><span class="flag">Time served?</span>
-          <h3>Career path</h3>
-          <div class="swapbox">
-            <div class="bad"><p>Eligible for promotion after two years in role, subject to manager recommendation.</p></div>
-            <div class="good">
-              <p class="k2">From building the road to making it the standard every team follows.</p>
-              <p class="k3">From passing the audit to shaping how the bank meets risk rules.</p>
-              <p class="k5">From mentoring the team to growing other senior engineers.</p>
-            </div>
-          </div>
-        </div>
+
+      <div class="card intro" data-o="1" data-t="1" data-x="0">
+        <h3>Meet Mei.</h3>
+        <p style="margin:0;color:var(--soft)">She is applying to be a Senior Platform Engineer at Teratai Digital Bank. Follow her through the company twice: once the usual way, then with Talent Engine.</p>
       </div>
-      <div class="question"><p>"If this person is successful, what is true?"<span>The question every document should start from.</span></p></div>
+
+      <div class="card bad" data-o="2" data-t="1" data-x="1">
+        <p class="stop">The usual way, stop 1</p>
+        <h3>She reads the job ad.</h3>
+        <div class="paper"><span class="flag">Rockstar?</span><p class="kind">Job ad</p><p>We're looking for a DevOps rockstar who thrives in a fast-paced environment and loves new tech!</p></div>
+        <p class="say">It sells a personality, not a job.</p>
+      </div>
+
+      <div class="card bad" data-o="3" data-t="1" data-x="2">
+        <p class="stop">The usual way, stop 2</p>
+        <h3>The interview.</h3>
+        <div class="paper"><span class="flag">Weakness?</span><p class="kind">Interview questions</p><p>Tell me about yourself. What is your greatest weakness? Where do you see yourself in five years?</p></div>
+        <p class="say">It tests something else again.</p>
+      </div>
+
+      <div class="card bad" data-o="4" data-t="1" data-x="3">
+        <p class="stop">The usual way, stop 3</p>
+        <h3>Her first week.</h3>
+        <div class="paper"><span class="flag">Then what?</span><p class="kind">Onboarding</p><p>Collect laptop, HR induction, read the team wiki. Then get stuck in.</p></div>
+        <p class="say">Nobody tells her what good looks like.</p>
+      </div>
+
+      <div class="drift" data-o="5" data-t="1" data-x="4">
+        <p>Nine months later, nobody can say whether she succeeded.</p>
+        <span>Not Mei, not her manager, not HR. Every document described a different job.</span>
+      </div>
+
+      <div class="card good" data-o="8" data-t="2" data-x="1">
+        <p class="stop">With Talent Engine, stop 1</p>
+        <h3>She reads the job ad.</h3>
+        <div class="paper"><p class="kind">Job ad</p>
+          <p class="l k1">Set service levels for every customer-facing service, and hit them.</p>
+          <p class="l k2">Build the road that lets 60 engineers ship safely, every day.</p>
+          <p class="l k4">Cut cloud cost per customer by <span class="was">a fifth</span><span class="alt">a third</span>.</p>
+        </div>
+        <p class="say">She knows exactly what she is signing up for.</p>
+      </div>
+
+      <div class="card good" data-o="9" data-t="2" data-x="2">
+        <p class="stop">Stop 2</p>
+        <h3>The interview.</h3>
+        <div class="paper"><p class="kind">Interview guide, one stage per outcome</p>
+          <p class="l k1">Tell me about a service level you set. What happened when it slipped?</p>
+          <p class="l k5">Walk me through the worst incident you led, minute by minute.</p>
+          <p class="l k4">When did a cloud bill last surprise you? What did you change?</p>
+        </div>
+        <p class="say">Every interviewer tests a different outcome. No question asked twice.</p>
+      </div>
+
+      <div class="card good" data-o="10" data-t="2" data-x="3">
+        <p class="stop">Stop 3</p>
+        <h3>Day 1 to day 90.</h3>
+        <div class="paper"><p class="kind">Onboarding plan</p>
+          <p class="l k1">Days 31–60: agree service levels for the three most critical journeys.</p>
+          <p class="l k4">Turn on cost tagging and send the first spend report by team<span class="alt">, against the 30% target</span>.</p>
+          <p class="l k3">Days 61–90: close one audit finding with a platform control.</p>
+        </div>
+        <p class="say">Her first 90 days point at the same five outcomes.</p>
+      </div>
+
+      <div class="card good" data-o="11" data-t="2" data-x="4">
+        <p class="stop">Stop 4</p>
+        <h3>One year in.</h3>
+        <div class="paper"><p class="kind">Year-one review</p>
+          <ul class="score">
+            <li class="k1">Service levels agreed and met <b>Done</b></li>
+            <li class="k2">Teams deploy on their own <b>Done</b></li>
+            <li class="k3">Audit passed, no high findings <b>Done</b></li>
+            <li class="k4">Cost per customer <span class="was">down 22%</span><span class="alt">down 22%, target 30%</span> <b><span class="was">Done</span><span class="alt">On track</span></b></li>
+            <li class="k5">Incidents reviewed without blame <b>Done</b></li>
+          </ul>
+        </div>
+        <p class="say">Everyone can see she succeeded, because everyone agreed what success was.</p>
+      </div>
+
+      <div class="card good" data-o="12" data-t="2" data-x="5">
+        <p class="stop">Stop 5</p>
+        <h3>Promoted to Staff.</h3>
+        <div class="paper"><p class="kind">Progression guide</p>
+          <p class="l k2">From building the road to making it the standard every team follows.</p>
+          <p class="l k3">From passing the audit to shaping how the bank meets risk rules.</p>
+          <p class="l k5">From mentoring the team to growing other senior engineers.</p>
+        </div>
+        <p class="say">Her next step builds on the same outcomes.</p>
+      </div>
+
+      <div class="card good" data-o="13" data-t="2" data-x="6">
+        <p class="stop">Stop 6</p>
+        <h3>She moves on.</h3>
+        <div class="paper"><p class="kind">Handover plan</p>
+          <p class="l k1">Service dashboards and their owners handed to the platform lead.</p>
+          <p class="l k3">Audit evidence and controls written up for whoever comes next.</p>
+          <p class="l k5">Two engineers can run every part of the platform without her.</p>
+        </div>
+        <p class="say">When she leaves, what she built stays.</p>
+      </div>
     </div>
+
+    <div class="shade" id="shade"></div>
+    <div class="ov question" id="question">
+      <div class="rw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M11 19 4 12l7-7"/><path d="M20 19l-7-7 7-7"/></svg>Rewind. This time, start with one question.</div>
+      <p>"If this person is successful, what is true?"</p>
+    </div>
+    <div class="ov outcomes" id="outcomes">
+      <p class="lead">For Mei's role, the answer is five outcomes. Each gets a colour.</p>
+      <ul class="chips">
+        <li class="chip k1"><b>Reliable services</b><span>Every customer-facing service has an agreed service level</span></li>
+        <li class="chip k2"><b>Teams ship on their own</b><span>Product teams deploy several times a day</span></li>
+        <li class="chip k3"><b>Audit-ready</b><span>Risk controls pass with no high findings</span></li>
+        <li class="chip k4"><b>Cost <i class="was">−20%</i><i class="alt">−30%</i></b><span>Cloud cost per customer</span></li>
+        <li class="chip k5"><b>Calm incidents</b><span>Every major incident reviewed without blame</span></li>
+      </ul>
+    </div>
+    <div class="ov coda" id="coda">
+      <h2>When the role changes, change the outcome once.</h2>
+      <p>The cost target moves from 20% to 30%. Every document along Mei's path follows.</p>
+      <button class="btn" type="button" id="change">Change the cost target to 30%</button>
+    </div>
+    <div class="progress" id="progress"></div>
   </div>
 </section>
 
 <section class="band">
   <div class="wrap">
-    <h2>Not just the job ad. Everything the role touches.</h2>
+    <h2>Every document on that path, built for your roles.</h2>
     <p class="lead">You receive finished documents, written in your language and built from your strategy. Nobody has to learn a tool, and you own everything delivered.</p>
-    <div class="get" id="get">
+    <div class="get">
       <div class="pack role">
         <h3>For each role you are hiring</h3>
         <ul><li>Outcome-based job description</li><li>Job ad and LinkedIn version</li><li>An interview guide for each stage</li><li>Scorecard and debrief sheet</li><li>30-60-90 day onboarding plan</li></ul>
@@ -391,28 +472,110 @@ h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.02em}
       <p>Send a job description you are hiring for, or one you think is weak. We'll send back the full set, free.</p>
       <a class="big" href="mailto:hello@talent-engine.app?subject=A%20role%20for%20Talent%20Engine">hello@talent-engine.app</a>
     </div>
-    <footer>© 2026 Talent Engine. Teratai Digital Bank, used in the example above, is fictional.</footer>
+    <footer>© 2026 Talent Engine. Mei and Teratai Digital Bank are fictional.</footer>
   </div>
 </section>
 
 <script>
 (function(){
-  var stage=document.getElementById('stage');
-  var steps=[].slice.call(document.querySelectorAll('.step'));
-  function set(n){
-    stage.setAttribute('data-step',n);
-    steps.forEach(function(s){s.classList.toggle('on',s.getAttribute('data-step')===n)});
+  var root=document.documentElement, sec=document.getElementById('journey'), jv=document.getElementById('jv'),
+      world=document.getElementById('world'), mei=document.getElementById('mei'),
+      shade=document.getElementById('shade'), q=document.getElementById('question'),
+      oc=document.getElementById('outcomes'), coda=document.getElementById('coda'),
+      prog=document.getElementById('progress'), t1=document.getElementById('track1'), t2=document.getElementById('track2');
+  var cards=[].slice.call(world.querySelectorAll('[data-x]'));
+  var mode, W, H, S, LANE, MEI_X;
+  var COLS=['#3d6bff','#12b5a5','#8a5cf6','#f5a524','#ff5a5f'];
+
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+  function seg(p,a,b){return clamp((p-a)/(b-a),0,1)}
+  function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
+  function stairs(t){var i=Math.floor(t),f=t-i; f=f<.4?0:f>.92?1:ease((f-.4)/.52); return i+f}
+  function wave(len,amp,off){var d='M0 '+(30+off), n=Math.ceil(len/120);
+    for(var i=1;i<=n;i++){var x=i*120; d+=' Q'+(x-60)+' '+(30+off+(i%2?amp:-amp))+' '+x+' '+(30+off);} return d}
+
+  function layout(){
+    W=innerWidth; H=innerHeight; S=Math.max(560,W*.62); LANE=H*.74; MEI_X=W*.2;
+    var len1=S*4.6, len2=S*7.4;
+    t1.setAttribute('width',len1); t1.setAttribute('height',80); t1.style.left='0px'; t1.style.top=(LANE-30)+'px';
+    t1.innerHTML='<path d="'+wave(S*3.7,10,0)+'" fill="none" stroke="#b9bcd2" stroke-width="6" stroke-linecap="round" stroke-dasharray="2 14"/>'+
+      '<path d="M'+(S*3.7)+' 30 q40 -30 80 10 t70 -20 t60 40 t80 -10" fill="none" stroke="#b9bcd2" stroke-width="6" stroke-linecap="round" stroke-dasharray="2 14"/>';
+    var g='';
+    for(var k=0;k<5;k++){g+='<path d="'+wave(len2,10,(k-2)*7)+'" fill="none" stroke="'+COLS[k]+'" stroke-width="5" stroke-linecap="round"/>';}
+    for(var s=1;s<=6;s++){g+='<circle cx="'+(S*s)+'" cy="30" r="13" fill="#fff" stroke="#16172e" stroke-width="4"/>';}
+    t2.setAttribute('width',len2); t2.setAttribute('height',80); t2.style.left='0px'; t2.style.top=(H+LANE-30)+'px';
+    t2.innerHTML=g;
+    cards.forEach(function(c){
+      var x=+c.dataset.x, t=+c.dataset.t, h=c.offsetHeight;
+      c.style.left=(x*S+(x===0?MEI_X+60:70))+'px';
+      c.style.top=((t-1)*H+Math.max(70,LANE-60-h))+'px';
+    });
   }
-  if(!('IntersectionObserver' in window)){set('3');return;}
-  var io=new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting) set(e.target.getAttribute('data-step')); });
-  },{rootMargin: matchMedia('(max-width:900px)').matches ? '-72% 0px -22% 0px' : '-45% 0px -45% 0px'});
-  steps.forEach(function(s){io.observe(s)});
-  var q=location.search.match(/step=(\d)/); set(q?q[1]:'0'); if(q) io.disconnect();
-  var get=document.getElementById('get');
-  new IntersectionObserver(function(es,o){
-    es.forEach(function(e){ if(e.isIntersecting){get.classList.add('in');o.disconnect();} });
-  },{threshold:.3}).observe(get);
+
+  function frame(){
+    var r=sec.getBoundingClientRect(), total=sec.offsetHeight-H, p=clamp(-r.top/total,0,1);
+    var B=[0,.03,.3,.36,.45,.52,.88,1];
+    var camX, camY=0, sc=1, mx, my=LANE-118, drift=seg(p,B[2],B[3]);
+    // walking position
+    if(p<B[2]){ mx=S*stairs(seg(p,B[1],B[2])*3.7); }
+    else if(p<B[3]){ mx=S*(3.7+drift*.5); my+=drift*70; }
+    else if(p<B[4]){ var rw=ease(seg(p,B[3],B[4])); mx=S*4.2*(1-rw); camY=H*rw; my=LANE-118+H*rw; }
+    else if(p<B[5]){ mx=0; camY=H; my=H+LANE-118; }
+    else { mx=S*stairs(seg(p,B[5],B[6])*6.6); camY=H; my=H+LANE-118; }
+    camX=mx-MEI_X;
+    if(p>=B[6]){ var z=ease(seg(p,B[6],B[7])), fit=Math.min(1,(W*.96)/(S*6.5));
+      sc=1+(fit-1)*z;
+      camX=camX*(1-z)+(S*.75-W*.02/fit)*z;
+      camY=H*(1-z)+(H-H*.26/fit)*z; }
+    world.style.transform='translate('+(-camX*sc)+'px,'+(-camY*sc)+'px) scale('+sc+')';
+    mei.style.transform='translate('+mx+'px,'+my+'px) rotate('+(drift*14*(p<B[3]?1:0))+'deg)';
+    mei.style.opacity=(p>B[2]&&p<B[4])?(1-drift*.6):1;
+    mei.style.left='0px'; mei.style.top='0px';
+    mei.classList.toggle('good',p>=B[4]);
+    // overlays
+    var qa=seg(p,B[3]+.005,B[3]+.025), qb=1-seg(p,B[4]-.01,B[4]+.02);
+    shade.style.opacity=Math.min(qa,qb)*.96; q.style.opacity=Math.min(qa,qb);
+    oc.style.opacity=p>=B[4]-.005?1:0;
+    oc.classList.toggle('show',p>=B[4]);
+    oc.classList.toggle('legend',p>=B[4]+.035);
+    coda.style.opacity=seg(p,B[6]+.04,B[6]+.07);
+    root.classList.toggle('changed',p>=B[6]+.08);
+    var fade=1-seg(p,B[6],B[6]+.03); t1.style.opacity=fade; world.querySelectorAll('.bad,.intro,.drift').forEach(function(e){e.style.opacity=fade});
+    prog.style.transform='scaleX('+p+')';
+  }
+
+  var last=null, idle;
+  function onScroll(){
+    if(mode!=='cine')return;
+    var before=mei.style.transform; frame();
+    if(mei.style.transform!==before){ mei.classList.add('walking'); clearTimeout(idle); idle=setTimeout(function(){mei.classList.remove('walking')},140); }
+  }
+
+  function setMode(){
+    var cine=innerWidth>900 && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var m=cine?'cine':'static';
+    root.classList.toggle('cine',cine); root.classList.toggle('static',!cine);
+    mode=m;
+    if(cine){ layout(); frame(); }
+    else {
+      world.style.transform=''; mei.style.transform=''; mei.style.opacity='';
+      cards.forEach(function(c){c.style.left='';c.style.top='';});
+      [shade,q,oc,coda].forEach(function(e){e.style.opacity='';});
+      oc.classList.remove('legend','show'); root.classList.remove('changed');
+    }
+  }
+  // static mode: Mei turns colourful once the good run begins
+  var firstGood=world.querySelector('.card.good');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){es.forEach(function(e){ if(mode==='static') mei.classList.toggle('good', e.boundingClientRect.top<innerHeight*.6); });},{threshold:[0,1]}).observe(firstGood);
+  }
+  document.getElementById('change').addEventListener('click',function(){
+    root.classList.add('changed'); this.textContent='Changed. Scroll up to see what moved.'; this.disabled=true;
+  });
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',function(){setMode()});
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(setMode)}
+  setMode();
 })();
 </script>
 </body>
