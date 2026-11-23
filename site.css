@@ -226,7 +226,7 @@ footer{padding:50px 0 40px;text-align:center;color:var(--soft);font-size:14px}
 .more:hover{border-bottom-color:var(--k)}
 .cross{font-size:17px!important;margin-top:28px!important}
 .cross a{color:var(--blue);font-weight:600;text-decoration:none}
-@media (max-width:960px){.bar nav a.here,.bar nav a[href="careers.html"],.bar nav a[href="index.html"],.bar nav a[href="performance.html"]{display:inline}}
+@media (max-width:960px){.bar nav a.here,.bar nav a[href="careers.html"],.bar nav a[href="index.html"],.bar nav a[href="performance.html"],.bar nav a[href="how-it-works.html"]{display:inline}}
 @media (max-width:560px){.bar nav{gap:14px;font-size:14px}.bar .pill-btn{display:none}}
 .question .eyebrow{margin:0 auto}
 
@@ -257,3 +257,5 @@ footer{padding:50px 0 40px;text-align:center;color:var(--soft);font-size:14px}
 .hero .h1-home{font-size:clamp(46px,4.8vw,80px)}
 .hero .lines{max-width:31em}
 @media (min-width:961px){.nw{white-space:nowrap}}
+@media (max-width:560px){.bar nav{gap:10px;font-size:13px}}
+.offer .more{margin-top:30px}
