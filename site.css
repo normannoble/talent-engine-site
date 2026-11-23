@@ -226,6 +226,6 @@ footer{padding:50px 0 40px;text-align:center;color:var(--soft);font-size:14px}
 .more:hover{border-bottom-color:var(--k)}
 .cross{font-size:17px!important;margin-top:28px!important}
 .cross a{color:var(--blue);font-weight:600;text-decoration:none}
-@media (max-width:960px){.bar nav a.here,.bar nav a[href="careers"],.bar nav a[href="./"]{display:inline}}
+@media (max-width:960px){.bar nav a.here,.bar nav a[href="careers.html"],.bar nav a[href="index.html"]{display:inline}}
 @media (max-width:560px){.bar nav{gap:14px;font-size:14px}.bar .pill-btn{display:none}}
 .question .eyebrow{margin:0 auto}
