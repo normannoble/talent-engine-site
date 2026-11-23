@@ -4,578 +4,556 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Talent Engine</title>
-<meta name="description" content="Your job ad, interviews, onboarding and promotion criteria should describe the same job. Talent Engine defines what success looks like in a role, then builds every people document from it.">
-<meta property="og:title" content="Talent Engine — one definition of success, every document">
-<meta property="og:description" content="Define what success looks like in a role once. Every hiring and people document follows from it.">
+<meta name="description" content="Write down what success looks like in a role once. Talent Engine builds the job ad, interview guides, onboarding plan, reviews, career path and handover from it.">
+<meta property="og:title" content="Talent Engine — every role, one definition of success">
+<meta property="og:description" content="Write down what success looks like once. Every hiring and people document follows from it.">
 <meta property="og:url" content="https://talent-engine.app/">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2316172e'/%3E%3Crect x='7' y='7' width='18' height='3' rx='1.5' fill='%233d6bff'/%3E%3Crect x='7' y='12' width='14' height='3' rx='1.5' fill='%2312b5a5'/%3E%3Crect x='7' y='17' width='16' height='3' rx='1.5' fill='%238a5cf6'/%3E%3Crect x='7' y='22' width='11' height='3' rx='1.5' fill='%23f5a524'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='5' y='6' width='22' height='5' rx='2.5' fill='%232457e6'/%3E%3Crect x='5' y='13.5' width='16' height='5' rx='2.5' fill='%2312a594'/%3E%3Crect x='5' y='21' width='19' height='5' rx='2.5' fill='%23f39a1e'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;800&family=Inter:wght@400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --night:#16172e; --night-2:#22244a;
-  --light:#f6f6fb; --paper:#ffffff;
-  --ink:#16172e; --soft:#5d6080; --rule:#dedff0; --grey:#9a9db8;
-  --c1:#3d6bff; --c2:#12b5a5; --c3:#8a5cf6; --c4:#f5a524; --c5:#ff5a5f;
-  --display:"Bricolage Grotesque",system-ui,sans-serif;
-  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --doc:"Source Serif 4",Georgia,serif;
+  --bg:#fbfaf7; --ink:#141414; --soft:#5b5e6b; --line:#e7e5df; --white:#fff;
+  --blue:#2457e6;
+  --c1:#2457e6; --c2:#12a594; --c3:#7c4dff; --c4:#f39a1e; --c5:#ef476f;
+  --p1:#e8eefe; --p2:#e3f4ef; --p3:#f6e6f1; --p4:#fdf0dc; --p5:#ece8fd; --p6:#eaf3e4;
+  --display:"Inter Tight",system-ui,sans-serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Caveat",cursive;
   --ease:cubic-bezier(.2,.8,.2,1);
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--light);color:var(--ink);font:400 17px/1.55 var(--sans)}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--sans)}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--c1);outline-offset:3px;border-radius:4px}
-.wrap{max-width:1160px;margin:0 auto;padding:0 28px}
-h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.02em}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.03em;line-height:1.02}
 .k1{--k:var(--c1)}.k2{--k:var(--c2)}.k3{--k:var(--c3)}.k4{--k:var(--c4)}.k5{--k:var(--c5)}
+.blue{color:var(--blue)}
 
-/* ---------- hero ---------- */
-.hero{background:var(--night);color:#fff;overflow:hidden;position:relative}
-.nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0}
-.brand{display:flex;align-items:center;gap:10px;font:700 19px/1 var(--display);text-decoration:none;color:#fff}
-.brand svg{width:28px;height:28px}
-.nav a.mail{font-weight:500;font-size:15px;color:#c9cbef;text-decoration:none;border-bottom:1px solid #4a4d85}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:56px 0 110px}
-.hero h1{font-size:clamp(40px,5.6vw,72px);line-height:1;font-weight:800}
-.hero p.sub{font-size:20px;color:#c9cbef;margin:24px 0 34px;max-width:30em}
-.btn{display:inline-block;font:600 16px/1 var(--sans);padding:16px 22px;border-radius:999px;text-decoration:none;border:0;cursor:pointer}
-.btn.solid{background:#fff;color:var(--night)}
-.btn.line{color:#fff;border:1.5px solid #4a4d85}
-.hero .btns{display:flex;flex-wrap:wrap;gap:10px}
-.art{position:relative;height:440px}
-.mini{position:absolute;width:46%;background:#fff;border-radius:10px;padding:16px 16px 14px;box-shadow:0 18px 40px -16px rgba(0,0,0,.55);animation:settle 1.1s var(--ease) 1.1s both}
-.mini b{display:block;font:600 12px/1 var(--sans);color:var(--soft);margin-bottom:12px}
-.mini i{display:block;height:9px;border-radius:5px;background:#e3e4ef;margin:7px 0;animation:tint .7s ease both;animation-delay:calc(2.1s + var(--d,0s))}
-.m1{left:2%;top:4%;--r:-9deg;--x:-22px;--y:18px}.m2{right:2%;top:0;--r:7deg;--x:30px;--y:-10px}
-.m3{left:6%;bottom:2%;--r:6deg;--x:-30px;--y:24px}.m4{right:0;bottom:6%;--r:-6deg;--x:26px;--y:30px}
-@keyframes settle{from{transform:translate(var(--x),var(--y)) rotate(var(--r))}to{transform:none}}
-@keyframes tint{from{background:#e3e4ef}to{background:var(--k)}}
-.art .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--c1) 0 20%,var(--c2) 0 40%,var(--c3) 0 60%,var(--c4) 0 80%,var(--c5) 0);display:grid;place-items:center;animation:pop .7s var(--ease) 1.7s both;box-shadow:0 0 0 10px var(--night)}
-.art .core span{width:104px;height:104px;border-radius:50%;background:var(--night);display:grid;place-items:center;text-align:center;font:700 14px/1.15 var(--display);color:#fff;padding:8px}
-@keyframes pop{from{transform:translate(-50%,-50%) scale(0)}to{transform:translate(-50%,-50%) scale(1)}}
-.hero h1,.hero .sub,.hero .btns{animation:rise .8s var(--ease) both}
-.hero .sub{animation-delay:.12s}.hero .btns{animation-delay:.24s}
-@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-.scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);font-size:14px;color:#9a9dcc;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:6px}
-.scrollcue::after{content:"";width:2px;height:26px;background:linear-gradient(#9a9dcc,transparent);animation:cue 1.8s ease-in-out infinite}
-@keyframes cue{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(6px);opacity:1}}
+.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font:800 20px/1 var(--display);letter-spacing:-.03em;text-decoration:none}
+.logo svg{width:28px;height:28px}
+.bar nav{display:flex;gap:26px;align-items:center;font-size:15px;font-weight:500}
+.bar nav a{text-decoration:none;color:var(--soft)}
+.bar nav a:hover{color:var(--ink)}
+.pill-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 14px;font:600 14px/1 var(--sans);color:var(--ink)!important;text-decoration:none;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:#fff;text-decoration:none;font:600 17px/1 var(--sans);padding:18px 26px;border-radius:14px;box-shadow:0 10px 24px -10px rgba(36,87,230,.6);border:0;cursor:pointer}
+.btn.ghost{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.06);border:1px solid var(--line)}
 
-/* ---------- the journey ---------- */
-.journey{position:relative;background:var(--light)}
-.jv{position:relative}
+.hero{background:var(--p1);position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;min-height:calc(100vh - 64px);padding-top:40px;padding-bottom:60px}
+.hero h1{font-size:clamp(46px,6.4vw,92px);font-weight:800}
+.hero .lines{font-size:20px;color:#3a3d4a;margin:28px 0 36px;line-height:1.6}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.stage{position:relative;height:560px}
+.ring{position:absolute;left:50%;top:50%;border:1.5px solid #c9d4f6;border-radius:50%;transform:translate(-50%,-50%)}
+.ring.r1{width:300px;height:300px}.ring.r2{width:470px;height:470px}.ring.r3{width:640px;height:640px;border-style:dashed}
+.tile{position:absolute;background:#fff;border-radius:22px;box-shadow:0 24px 50px -24px rgba(20,30,80,.35);padding:18px 18px 16px;animation:float 6s ease-in-out infinite}
+.tile .ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;margin-bottom:12px;color:#fff;font:700 15px/1 var(--display)}
+.tile b{display:block;font:700 16px/1.2 var(--display);letter-spacing:-.01em}
+.tile small{display:block;color:var(--soft);font-size:12.5px;margin-top:3px}
+.tile i{display:block;height:7px;border-radius:4px;margin-top:8px;background:var(--k)}
+.t1{left:2%;top:10%;width:200px;background:#fde7c8;transform:rotate(-7deg);--r:-7deg}
+.t2{right:-6%;top:12%;width:190px;transform:rotate(6deg);--r:6deg;animation-delay:-2s}
+.t3{left:6%;bottom:6%;width:180px;background:#f9dbe8;transform:rotate(5deg);--r:5deg;animation-delay:-4s}
+.t4{right:6%;bottom:2%;width:190px;background:#d9f1e8;transform:rotate(-5deg);--r:-5deg;animation-delay:-1s}
+.core{position:absolute;left:50%;top:50%;width:250px;transform:translate(-50%,-50%);background:#fff;border-radius:26px;padding:24px;box-shadow:0 34px 70px -30px rgba(20,30,80,.5);text-align:left;z-index:2}
+.core .mark{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.core .mark i{height:10px;border-radius:5px;background:var(--k);transform-origin:0 50%;animation:grow 1s var(--ease) both}
+.core .mark i:nth-child(1){width:86%;animation-delay:.3s}.core .mark i:nth-child(2){width:64%;animation-delay:.42s}.core .mark i:nth-child(3){width:76%;animation-delay:.54s}.core .mark i:nth-child(4){width:52%;animation-delay:.66s}.core .mark i:nth-child(5){width:70%;animation-delay:.78s}
+.core b{display:block;font:800 21px/1.1 var(--display);letter-spacing:-.02em}
+.core small{display:block;color:var(--soft);font-size:13.5px;margin-top:6px}
+.note{font:600 24px/1.1 var(--hand);color:#4b5bb5;position:absolute;white-space:nowrap}
+.hero .note{left:30%;bottom:-6px;transform:rotate(-3deg)}
+.spark{position:absolute;color:var(--c4);font-size:24px}
+@keyframes float{0%,100%{transform:translateY(0) rotate(var(--r))}50%{transform:translateY(-12px) rotate(var(--r))}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.hero h1,.hero .lines,.hero .ctas{animation:rise .9s var(--ease) both}
+.hero .lines{animation-delay:.1s}.hero .ctas{animation-delay:.2s}
+.stage{animation:rise 1s var(--ease) .15s both}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 
-/* Mei */
-.mei{width:64px;height:128px;--shirt:var(--grey)}
-.mei svg{width:100%;height:100%;overflow:visible}
-.mei .shirt{fill:var(--shirt);transition:fill .6s ease}
-.mei .leg{transform-box:fill-box;transform-origin:50% 0}
-.mei .arm{transform-box:fill-box;transform-origin:50% 0}
-.mei.walking .l1,.mei.walking .a2{animation:swing .42s ease-in-out infinite alternate}
-.mei.walking .l2,.mei.walking .a1{animation:swing .42s ease-in-out infinite alternate-reverse}
-.mei.walking .body{animation:bob .21s ease-in-out infinite alternate}
-@keyframes swing{from{transform:rotate(18deg)}to{transform:rotate(-18deg)}}
-@keyframes bob{to{transform:translateY(-2px)}}
-.mei.good{--shirt:var(--c1)}
-.mei .badge{opacity:0;transition:opacity .5s ease}
-.mei.good .badge{opacity:1}
+.rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:15;display:flex;flex-direction:column;gap:12px;list-style:none;margin:0;padding:0}
+.rail a{display:block;width:8px;height:8px;border-radius:50%;background:#c8c9d2;transition:transform .3s var(--ease),background .3s ease}
+.rail a.on{background:var(--k,var(--blue));transform:scale(1.6)}
+.rail a span{position:absolute;right:20px;top:50%;transform:translateY(-50%);white-space:nowrap;font:600 12px/1 var(--sans);background:var(--ink);color:#fff;padding:6px 8px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .2s}
+.rail li{position:relative}
+.rail a:hover span,.rail a:focus-visible span{opacity:1}
 
-/* documents along the path */
-.card{background:#fff;border-radius:16px;padding:20px 22px;box-shadow:0 24px 50px -30px rgba(22,23,46,.45);width:min(400px,34vw)}
-.card .stop{font:700 14px/1.2 var(--display);color:var(--soft);margin:0 0 4px}
-.card h3{font-size:24px;line-height:1.1;font-weight:700;margin:0 0 14px}
-.card .say{font:500 15px/1.4 var(--sans);color:var(--soft);margin:14px 0 0}
-.paper{background:var(--light);border-radius:10px;padding:14px 14px 12px;position:relative}
-.paper .kind{font:600 12px/1 var(--sans);color:var(--soft);margin:0 0 9px}
-.paper p{margin:0;font:400 15px/1.42 var(--doc)}
-.paper p+p{margin-top:8px}
-.paper p.l{padding-left:11px;border-left:4px solid var(--k)}
-.bad .paper{transform:rotate(-1.5deg)}
-.bad .paper p{color:#5f6176}
-.flag{position:absolute;top:-10px;right:-8px;background:var(--c5);color:#fff;font:700 12px/1 var(--sans);padding:6px 9px;border-radius:999px}
-.score{list-style:none;margin:0;padding:0}
-.score li{display:flex;justify-content:space-between;gap:10px;padding:6px 0 6px 11px;border-left:4px solid var(--k);font:400 15px/1.35 var(--doc)}
-.score li+li{margin-top:6px}
-.score b{font:700 13px/1.35 var(--sans);color:var(--k);white-space:nowrap}
-.alt{display:none}
-.changed .alt{display:inline}
-.changed .was{display:none}
-.changed .k4.l,.changed .score .k4{animation:flash 1.1s ease 3}
-@keyframes flash{50%{background:color-mix(in srgb,var(--c4) 55%,transparent)}}
-.changed .k4.l,.changed .score .k4{background:color-mix(in srgb,var(--c4) 22%,transparent)}
+.problem{padding:140px 0 120px;background:#fff}
+.problem .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.problem h2{font-size:clamp(38px,4.6vw,64px);font-weight:800}
+.problem p.lead{font-size:19px;color:var(--soft);margin:22px 0 0;max-width:28em}
+.mess{position:relative;height:420px}
+.scrap{position:absolute;width:56%;background:#f6f5f1;border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:0 18px 40px -26px rgba(0,0,0,.35);transition:transform .9s var(--ease),opacity .6s ease}
+.scrap b{display:block;font:600 12px/1 var(--sans);color:var(--soft);margin-bottom:8px}
+.scrap p{margin:0;font-size:15px;color:#3b3d48}
+.scrap .q{position:absolute;top:-11px;right:-8px;background:var(--c5);color:#fff;font:700 12px/1 var(--sans);padding:6px 9px;border-radius:999px}
+.s1{left:0;top:0;transform:rotate(-6deg)}.s2{right:0;top:40px;transform:rotate(5deg)}
+.s3{left:4%;bottom:30px;transform:rotate(4deg)}.s4{right:4%;bottom:0;transform:rotate(-4deg)}
+.mess:not(.in) .scrap{opacity:0;transform:translateY(40px) rotate(0)}
+.mess.in .s2{transition-delay:.12s}.mess.in .s3{transition-delay:.24s}.mess.in .s4{transition-delay:.36s}
+.problem .note{position:static;display:inline-block;margin-top:26px;color:var(--c5);transform:rotate(-2deg)}
 
-.intro h3{font-size:30px}
-.drift{width:min(460px,38vw)}
-.drift p{font:800 clamp(26px,2.6vw,38px)/1.08 var(--display);margin:0;letter-spacing:-.02em}
-.drift span{display:block;font:500 16px/1.4 var(--sans);color:var(--soft);margin-top:12px}
+.question{padding:150px 0;text-align:center;background:var(--bg)}
+.question .eyebrow{font:600 15px/1 var(--sans);color:var(--soft);margin:0}
+.question h2{font-size:clamp(40px,5.6vw,80px);font-weight:800;max-width:16ch;margin:20px auto 0}
+.question p{font-size:19px;color:var(--soft);max-width:34em;margin:24px auto 0}
+.outs{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:48px auto 0;max-width:900px;list-style:none;padding:0}
+.out{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px 14px 14px;display:flex;align-items:center;gap:12px;text-align:left;box-shadow:0 10px 24px -18px rgba(0,0,0,.3);opacity:0;transform:translateY(18px) scale(.96);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.out .dot{width:34px;height:34px;border-radius:10px;background:var(--k);flex:none}
+.out b{display:block;font:700 16px/1.2 var(--display);letter-spacing:-.01em}
+.out small{display:block;color:var(--soft);font-size:13px}
+.outs.in .out{opacity:1;transform:none}
+.outs.in .out:nth-child(2){transition-delay:.1s}.outs.in .out:nth-child(3){transition-delay:.2s}.outs.in .out:nth-child(4){transition-delay:.3s}.outs.in .out:nth-child(5){transition-delay:.4s}
+.question .note{position:static;display:block;margin-top:30px;color:#4b5bb5}
 
-/* overlays (question, outcomes, coda) */
-.question{text-align:center}
-.question .rw{font:700 15px/1 var(--display);color:#9a9dcc;margin-bottom:18px;display:inline-flex;align-items:center;gap:8px}
-.question .rw svg{width:20px;height:20px}
-.question p{font:800 clamp(30px,4vw,58px)/1.04 var(--display);margin:0;letter-spacing:-.025em;color:#fff;max-width:18ch;margin-inline:auto}
-.outcomes .lead{font:700 15px/1.3 var(--display);color:var(--soft);margin:0 0 14px}
-.chips{display:flex;flex-wrap:wrap;gap:10px;list-style:none;margin:0;padding:0}
-.chip{background:var(--k);color:#fff;border-radius:16px;padding:12px 16px;max-width:230px}
-.chip.k4{color:var(--ink)}
-.chip b{display:block;font:700 16px/1.2 var(--display)}
-.chip b i{font-style:normal}
-.chip span{display:block;font:400 13px/1.35 var(--sans);opacity:.9;margin-top:3px}
-.coda h2{font-size:clamp(26px,3vw,40px);line-height:1.05;font-weight:800}
-.coda p{color:var(--soft);margin:10px 0 0;max-width:30em}
+.step{min-height:100vh;display:flex;align-items:center;padding:110px 0;background:var(--pb)}
+.step .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;width:100%}
+.step .num{font:600 15px/1 var(--sans);color:var(--soft);letter-spacing:.02em}
+.step h2{font-size:clamp(38px,4.4vw,60px);font-weight:800;margin:18px 0 0}
+.step .who{display:block;font:700 16px/1 var(--display);color:var(--k);margin:24px 0 0}
+.step p.copy{font-size:18px;color:#3a3d4a;margin:14px 0 0;max-width:30em}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0;padding:0;list-style:none}
+.tags li{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:500}
+.mockcol{position:relative}
+.win{background:rgba(255,255,255,.92);border:1px solid rgba(0,0,0,.06);border-radius:20px;box-shadow:0 40px 80px -40px rgba(30,30,60,.45);overflow:hidden;transform:translateY(40px);opacity:0;transition:transform .9s var(--ease),opacity .6s ease}
+.step.in .win{transform:none;opacity:1}
+.win .chrome{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--line);font:500 12.5px/1 var(--sans);color:var(--soft)}
+.win .chrome i{width:10px;height:10px;border-radius:50%;background:#e2e1dc}
+.win .chrome span{margin:0 auto;transform:translateX(-20px)}
+.win .body{padding:24px 26px 26px}
+.win h3{font-size:26px;font-weight:800;letter-spacing:-.025em;margin:0 0 4px}
+.win .sub{color:var(--soft);font-size:14px;margin:0 0 18px}
+.rows{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.row{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;opacity:0;transform:translateX(20px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.step.in .row{opacity:1;transform:none}
+.step.in .row:nth-child(1){transition-delay:.35s}.step.in .row:nth-child(2){transition-delay:.5s}.step.in .row:nth-child(3){transition-delay:.65s}.step.in .row:nth-child(4){transition-delay:.8s}.step.in .row:nth-child(5){transition-delay:.95s}
+.row .tag{flex:none;width:30px;height:30px;border-radius:9px;background:color-mix(in srgb,var(--k) 16%,#fff);display:grid;place-items:center}
+.row .tag::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--k)}
+.row .t{flex:1;font-size:15px;line-height:1.4}
+.row .t small{display:block;color:var(--k);font-weight:600;font-size:12px;margin-bottom:2px}
+.row .ok{flex:none;width:24px;height:24px;border-radius:50%;background:var(--k);display:grid;place-items:center;transform:scale(0);transition:transform .4s var(--ease)}
+.step.in .row .ok{transform:scale(1);transition-delay:1.2s}
+.row.sel{border-color:color-mix(in srgb,var(--k) 50%,#fff);box-shadow:0 0 0 3px color-mix(in srgb,var(--k) 14%,transparent)}
+.bar2{height:8px;border-radius:4px;background:#eceae4;margin-top:8px;overflow:hidden}
+.bar2 i{display:block;height:100%;width:0;background:var(--k);border-radius:4px;transition:width 1.2s var(--ease) .6s}
+.step.in .bar2 i{width:var(--w)}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cols .col{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+.cols .col b{display:block;font:700 14px/1.2 var(--display);margin-bottom:8px}
+.cols .col p{margin:0 0 8px;font-size:13.5px;line-height:1.35;padding-left:9px;border-left:3px solid var(--k);opacity:0;transition:opacity .5s ease .3s}
+.step.in .cols .col p{opacity:1}
+.step.in .cols .col:nth-child(2) p{transition-delay:.7s}.step.in .cols .col:nth-child(3) p{transition-delay:1.1s}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.vs .from{color:var(--soft);font-size:14px;text-decoration:line-through;text-decoration-color:#c5c3bc}
+.vs .arrow{color:var(--k)}
+.vs .to{font-size:15px;font-weight:500}
+.prompt{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 12px 12px 16px;display:flex;align-items:center;gap:12px;font-size:14.5px;box-shadow:0 18px 40px -28px rgba(0,0,0,.35)}
+.prompt .send{margin-left:auto;width:32px;height:32px;border-radius:50%;background:var(--k);display:grid;place-items:center;flex:none}
+.mockcol .note{right:10px;bottom:-44px;transform:rotate(-3deg);color:var(--k)}
+.alt{display:none}.changed .alt{display:inline}.changed .was{display:none}
 
-/* --- cinematic mode (desktop, motion allowed) --- */
-.cine .journey{height:1500vh}
-.cine .jv{position:sticky;top:0;height:100vh;overflow:hidden}
-.cine .world{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
-.cine .world > *{position:absolute}
-.cine .track{pointer-events:none}
-.cine .mei{z-index:3}
-.cine .ov{position:absolute;z-index:4;pointer-events:none;transition:opacity .35s ease}
-.cine .shade{position:absolute;inset:0;background:var(--night);opacity:0;z-index:4;pointer-events:none}
-.cine .question{inset:0;display:grid;place-content:center;padding:40px;opacity:0}
-.cine .outcomes{left:50%;top:50%;transform:translate(-50%,-50%);width:min(1000px,90vw);opacity:0;transition:transform .7s var(--ease),opacity .35s ease,width .7s var(--ease)}
-.cine .outcomes .chips{justify-content:center}
-.cine .outcomes.legend{left:28px;top:22px;transform:none;width:auto;max-width:calc(100vw - 56px)}
-.cine .outcomes.legend .lead{display:none}
-.cine .outcomes.legend .chips{justify-content:flex-start;gap:6px}
-.cine .outcomes.legend .chip{padding:7px 12px;border-radius:999px;max-width:none}
-.cine .outcomes.legend .chip span{display:none}
-.cine .outcomes.legend .chip b{font-size:13px}
-.cine .outcomes .chip{opacity:0;transform:translateY(14px) scale(.92);transition:opacity .4s var(--ease),transform .4s var(--ease)}
-.cine .outcomes.show .chip{opacity:1;transform:none}
-.cine .outcomes.show .chip:nth-child(2){transition-delay:.08s}.cine .outcomes.show .chip:nth-child(3){transition-delay:.16s}.cine .outcomes.show .chip:nth-child(4){transition-delay:.24s}.cine .outcomes.show .chip:nth-child(5){transition-delay:.32s}
-.cine .coda{left:28px;bottom:28px;max-width:560px;opacity:0;background:#fff;border-radius:18px;padding:22px 26px;box-shadow:0 24px 50px -30px rgba(22,23,46,.45)}
-.cine .coda button{display:none}
-.cine .progress{position:absolute;left:0;bottom:0;height:5px;width:100%;transform-origin:0 50%;background:linear-gradient(90deg,var(--grey) 0 30%,var(--c1) 30%,var(--c2),var(--c3),var(--c4),var(--c5));z-index:5;transform:scaleX(0)}
+.change{padding:140px 0;background:#fff}
+.change .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.change h2{font-size:clamp(38px,4.4vw,60px);font-weight:800}
+.change p{font-size:18px;color:var(--soft);margin:20px 0 28px;max-width:28em}
+.switch{display:inline-flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 12px 10px 18px;font:600 16px/1 var(--sans);cursor:pointer;box-shadow:0 10px 24px -18px rgba(0,0,0,.35);color:var(--ink)}
+.switch .knob{width:56px;height:32px;border-radius:999px;background:#e5e3dd;position:relative;transition:background .3s ease}
+.switch .knob::after{content:"";position:absolute;left:4px;top:4px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:transform .35s var(--ease)}
+.changed .switch .knob{background:var(--c4)}
+.changed .switch .knob::after{transform:translateX(24px)}
+.minis{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mini{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:16px}
+.mini b{display:block;font:600 12.5px/1 var(--sans);color:var(--soft);margin-bottom:10px}
+.mini p{margin:0;font-size:15px;line-height:1.4;padding:6px 8px 6px 10px;border-left:4px solid var(--c4);border-radius:0 8px 8px 0;transition:background .4s ease}
+.changed .mini p{background:#fdebc8;animation:pulse 1s ease 2}
+@keyframes pulse{50%{background:#f9d28a}}
 
-/* --- static mode (phones, reduced motion) --- */
-.static .jv{display:flex;flex-direction:column;gap:22px;padding:72px 16px 96px 64px;max-width:640px;margin:0 auto}
-.static .jv::before{content:"";position:absolute;left:30px;top:72px;bottom:96px;width:6px;border-radius:3px;background:linear-gradient(var(--grey) 0 32%,var(--c1) 34%,var(--c2) 52%,var(--c3) 68%,var(--c4) 84%,var(--c5))}
-.static .world{display:contents}
-.static .track,.static .shade,.static .progress{display:none}
-.static .mei{order:0;position:sticky;top:42vh;height:0;width:40px;margin-left:-58px;z-index:3;align-self:flex-start}
-.static .mei svg{height:80px;width:40px;transform:translateY(-40px)}
-.static .card,.static .drift{width:auto}
-.static .question{order:6;background:var(--night);border-radius:18px;padding:34px 24px}
-.static .question p{font-size:30px}
-.static .outcomes{order:7}
-.static .chip{max-width:none;flex:1 1 100%}
-.static .coda{order:14;background:#fff;border-radius:18px;padding:22px}
-.static .coda button{margin-top:16px;background:var(--c4);color:var(--ink)}
-.static [data-o="1"]{order:1}.static [data-o="2"]{order:2}.static [data-o="3"]{order:3}.static [data-o="4"]{order:4}.static [data-o="5"]{order:5}
-.static [data-o="8"]{order:8}.static [data-o="9"]{order:9}.static [data-o="10"]{order:10}.static [data-o="11"]{order:11}.static [data-o="12"]{order:12}.static [data-o="13"]{order:13}
-.static .bad .paper{transform:none}
+.offer{padding:130px 0;background:var(--p5)}
+.offer h2{font-size:clamp(38px,4.6vw,64px);font-weight:800;max-width:16ch}
+.offer .lead{font-size:19px;color:var(--soft);max-width:34em;margin:20px 0 0}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:56px 0 0;padding:0;list-style:none}
+.steps3 li{background:#fff;border-radius:22px;padding:28px;box-shadow:0 24px 50px -36px rgba(30,30,60,.5)}
+.steps3 .n{font:800 46px/1 var(--display);color:var(--k);letter-spacing:-.04em}
+.steps3 h3{font-size:24px;font-weight:800;margin:16px 0 8px}
+.steps3 p{margin:0;color:var(--soft)}
+.promise{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px;padding:0;list-style:none}
+.promise li{background:rgba(255,255,255,.7);border:1px solid rgba(0,0,0,.06);border-radius:999px;padding:10px 16px;font-size:15px}
+.promise b{font-weight:600}
 
-/* ---------- after the journey ---------- */
-.band{padding:120px 0}
-.band h2{font-size:clamp(32px,4.2vw,56px);line-height:1.02;font-weight:800;max-width:16ch}
-.band .lead{font-size:20px;color:var(--soft);max-width:34em;margin:20px 0 0}
-.get{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
-.pack{border-radius:22px;padding:34px;color:#fff}
-.pack.role{background:var(--c1)}.pack.fn{background:var(--c3)}
-.pack h3{font-size:26px;font-weight:700;margin-bottom:18px}
-.pack ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.pack li{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:8px 14px;font-size:15px;font-weight:500}
-.pack p{margin:22px 0 0;color:rgba(255,255,255,.85);font-size:16px}
-.who{background:#fff}
-.people{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
-.person{border-top:6px solid var(--k);padding-top:20px}
-.person h3{font-size:22px;font-weight:700}
-.person p{color:var(--soft);margin:10px 0 0}
-.path{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;position:relative;counter-reset:p}
-.path::before{content:"";position:absolute;left:22px;right:22px;top:22px;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--c2),var(--c1),var(--c3))}
-.path li{position:relative;counter-increment:p}
-.path li::before{content:counter(p);display:grid;place-items:center;width:50px;height:50px;border-radius:50%;background:var(--k);color:#fff;font:800 20px/1 var(--display);position:relative;box-shadow:0 0 0 6px var(--light);margin-bottom:22px}
-.path h3{font-size:22px;font-weight:700}
-.path p{color:var(--soft);margin:8px 0 0}
-.promise{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:72px}
-.promise div{background:#fff;border-radius:18px;padding:26px}
-.promise h3{font-size:20px;font-weight:700;margin-bottom:8px}
-.promise p{margin:0;color:var(--soft)}
-.end{background:var(--night);color:#fff;position:relative;overflow:hidden}
-.end .wrap{position:relative;padding-top:120px;padding-bottom:70px}
-.threads{position:absolute;inset:0;pointer-events:none}
-.threads i{position:absolute;left:-10%;height:4px;width:120%;border-radius:2px;background:var(--k);opacity:.28;transform:rotate(-8deg)}
-.end .norman{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:start;margin-bottom:110px}
-.end h2{font-size:clamp(32px,4.2vw,56px);line-height:1.02;font-weight:800}
-.end .norman p{color:#c9cbef;font-size:19px;margin:0 0 12px}
-.end .ask p{color:#c9cbef;font-size:20px;margin:0 0 14px;max-width:32em}
-.end a.big{display:inline-block;font:800 clamp(28px,5.6vw,74px)/1.05 var(--display);letter-spacing:-.03em;color:#fff;text-decoration:none;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c5));background-size:100% 6px;background-repeat:no-repeat;background-position:0 100%;padding-bottom:10px;word-break:break-word}
-.end footer{margin-top:90px;color:#8f92c4;font-size:14px}
+.close{padding:150px 0 70px;text-align:center;background:var(--bg);position:relative;overflow:hidden}
+.cloud{position:relative;height:220px;max-width:620px;margin:0 auto}
+.cloud .logo-big{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;gap:9px;width:96px}
+.cloud .logo-big i{display:block;height:20px;border-radius:10px;background:var(--k)}
+.chipf{position:absolute;border-radius:10px;padding:8px 14px;font:500 15px/1 var(--sans);animation:float 7s ease-in-out infinite}
+.f1{left:4%;top:18%;background:#e3ebfe;color:#2446a8;--r:-4deg}
+.f2{right:6%;top:10%;background:#fbe1ec;color:#a3285b;--r:5deg;animation-delay:-2s}
+.f3{left:14%;bottom:8%;background:#fdebd4;color:#9a5a10;--r:3deg;animation-delay:-4s}
+.f4{right:12%;bottom:14%;background:#dff3ec;color:#16705f;--r:-3deg;animation-delay:-1s}
+.f5{left:42%;top:-6%;background:#ece6fd;color:#5534b8;--r:2deg;animation-delay:-3s}
+.close h2{font-size:clamp(44px,6vw,86px);font-weight:800;margin-top:30px}
+.close p{font-size:19px;color:var(--soft);margin:22px auto 0;max-width:34em}
+.close .ctas{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:36px}
+.byline{margin:90px auto 0;max-width:640px;display:flex;gap:18px;align-items:center;text-align:left;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px 24px}
+.byline .av{width:52px;height:52px;border-radius:50%;background:conic-gradient(var(--c1) 0 20%,var(--c2) 0 40%,var(--c3) 0 60%,var(--c4) 0 80%,var(--c5) 0);flex:none;display:grid;place-items:center}
+.byline .av::after{content:"N";width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;font:800 18px/1 var(--display)}
+.byline p{margin:0;font-size:15.5px;color:var(--soft)}
+.byline b{color:var(--ink)}
+footer{padding:50px 0 40px;text-align:center;color:var(--soft);font-size:14px}
 
-@media (max-width:900px){
-  .hero-grid{grid-template-columns:1fr;gap:20px;padding:30px 0 90px}
-  .art{height:330px}
-  .get,.people,.promise,.end .norman{grid-template-columns:1fr}
-  .path{grid-template-columns:1fr}
-  .path::before{left:22px;right:auto;top:22px;bottom:22px;width:6px;height:auto;background:linear-gradient(var(--c2),var(--c1),var(--c3))}
-  .path li{padding-left:76px}
-  .path li::before{position:absolute;left:0;top:0;margin:0}
-  .band{padding:84px 0}
+@media (max-width:960px){
+  .hero .wrap,.problem .wrap,.step .wrap,.change .wrap{grid-template-columns:1fr}
+  .hero .wrap{min-height:0;padding-top:48px}
+  .stage{height:440px}
+  .ring.r3{display:none}
+  .rail,.bar nav a:not(.pill-btn){display:none}
+  .step{min-height:0;padding:90px 0}
+  .mess{height:380px}
+  .steps3{grid-template-columns:1fr}
+  .mockcol .note{position:static;display:block;margin-top:14px}
 }
-@media (max-width:520px){
-  .wrap{padding:0 16px}
-  .nav a.mail{display:none}
-  .pack{padding:26px}
+@media (max-width:560px){
+  .wrap{padding:0 18px}
+  .hero .lines br{display:none}
+  .stage{height:380px;zoom:.72}
+  .cols{grid-template-columns:1fr}
+  .minis{grid-template-columns:1fr}
+  .scrap{width:72%}
+  .btn{padding:16px 20px}
+  .vs{grid-template-columns:1fr}
+  .vs .arrow{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .mini i{background:var(--k)}
+  .win,.row,.out,.scrap,.cols .col p{opacity:1!important}
+  .win,.row,.out{transform:none!important}
+  .bar2 i{width:var(--w)!important}.row .ok{transform:none!important}
 }
 </style>
 </head>
 <body>
 
-<header class="hero">
+<header class="bar">
   <div class="wrap">
-    <nav class="nav">
-      <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#fff" fill-opacity=".08"/><rect x="7" y="7" width="18" height="3" rx="1.5" fill="#3d6bff"/><rect x="7" y="12" width="14" height="3" rx="1.5" fill="#12b5a5"/><rect x="7" y="17" width="16" height="3" rx="1.5" fill="#8a5cf6"/><rect x="7" y="22" width="11" height="3" rx="1.5" fill="#f5a524"/></svg>Talent Engine</a>
-      <a class="mail" href="mailto:hello@talent-engine.app">hello@talent-engine.app</a>
-    </nav>
-    <div class="hero-grid">
-      <div>
-        <h1>Hire, onboard and grow people against the same definition of success.</h1>
-        <p class="sub">Most companies describe a role differently in every document. Talent Engine writes down what success looks like once, then builds every document from it.</p>
-        <div class="btns">
-          <a class="btn solid" href="#journey">Follow one hire</a>
-          <a class="btn line" href="#start">Try it on one of your roles</a>
-        </div>
-      </div>
-      <div class="art" aria-hidden="true">
-        <div class="mini m1"><b>Job ad</b><i class="k1" style="width:90%"></i><i class="k2" style="width:70%;--d:.1s"></i><i class="k4" style="width:80%;--d:.2s"></i></div>
-        <div class="mini m2"><b>Interview guide</b><i class="k1" style="width:80%;--d:.15s"></i><i class="k5" style="width:92%;--d:.25s"></i><i class="k3" style="width:60%;--d:.35s"></i></div>
-        <div class="mini m3"><b>Onboarding plan</b><i class="k1" style="width:75%;--d:.2s"></i><i class="k4" style="width:88%;--d:.3s"></i><i class="k3" style="width:66%;--d:.4s"></i></div>
-        <div class="mini m4"><b>Career path</b><i class="k2" style="width:86%;--d:.25s"></i><i class="k3" style="width:72%;--d:.35s"></i><i class="k5" style="width:58%;--d:.45s"></i></div>
-        <div class="core"><span>What success looks like</span></div>
-      </div>
-    </div>
+    <a class="logo" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="6" width="22" height="5" rx="2.5" fill="#2457e6"/><rect x="5" y="13.5" width="16" height="5" rx="2.5" fill="#12a594"/><rect x="5" y="21" width="19" height="5" rx="2.5" fill="#f39a1e"/></svg>Talent Engine</a>
+    <nav><a href="#journey">Follow one hire</a><a href="#start">How to start</a><a class="pill-btn" href="mailto:hello@talent-engine.app">Send us a role</a></nav>
   </div>
-  <a class="scrollcue" href="#journey">Scroll</a>
 </header>
 
+<ul class="rail" id="rail" aria-label="Sections">
+  <li><a href="#top"><span>Start</span></a></li>
+  <li><a href="#problem"><span>The problem</span></a></li>
+  <li><a href="#question"><span>The question</span></a></li>
+  <li class="k1"><a href="#s1"><span>01 Job ad</span></a></li>
+  <li class="k5"><a href="#s2"><span>02 Interview</span></a></li>
+  <li class="k4"><a href="#s3"><span>03 First 90 days</span></a></li>
+  <li class="k2"><a href="#s4"><span>04 Year one</span></a></li>
+  <li class="k3"><a href="#s5"><span>05 Promotion</span></a></li>
+  <li class="k2"><a href="#s6"><span>06 Handover</span></a></li>
+  <li class="k4"><a href="#change"><span>Change once</span></a></li>
+  <li><a href="#start"><span>How to start</span></a></li>
+</ul>
+
 <main>
-<section class="journey" id="journey" aria-label="One hire, followed through the company">
-  <div class="jv" id="jv">
-    <div class="world" id="world">
-
-      <svg class="track" id="track1" aria-hidden="true"></svg>
-      <svg class="track" id="track2" aria-hidden="true"></svg>
-
-      <div class="mei" id="mei" aria-hidden="true">
-        <svg viewBox="0 0 64 128">
-          <g class="leg l1"><rect x="22" y="70" width="9" height="44" rx="4.5" fill="#16172e"/><rect x="19" y="108" width="15" height="8" rx="4" fill="#16172e"/></g>
-          <g class="leg l2"><rect x="33" y="70" width="9" height="44" rx="4.5" fill="#2b2d55"/><rect x="31" y="108" width="15" height="8" rx="4" fill="#2b2d55"/></g>
-          <g class="body">
-            <rect class="arm a1" x="12" y="36" width="8" height="32" rx="4" fill="#e9b893"/>
-            <rect class="arm a2" x="44" y="36" width="8" height="32" rx="4" fill="#e9b893"/>
-            <rect class="shirt" x="16" y="32" width="32" height="44" rx="12"/>
-            <circle class="badge" cx="40" cy="44" r="4" fill="#f5a524"/>
-            <rect x="28" y="25" width="8" height="9" rx="3" fill="#e9b893"/>
-            <circle cx="32" cy="17" r="12" fill="#e9b893"/>
-            <path d="M19 19c-1-10 5-16 13-16s14 6 13 16c-2-5-6-8-13-8s-11 3-13 8z" fill="#22243a"/>
-            <path d="M19 17c0 7-1 11-3 13 4 0 6-2 7-6zM45 17c0 7 1 11 3 13-4 0-6-2-7-6z" fill="#22243a"/>
-          </g>
-        </svg>
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>Every role.<br>One definition of <span class="blue">success.</span></h1>
+      <p class="lines">Write down what must be true after a year in the role.<br>Talent Engine builds every people document from it,<br>from the job ad to the day they hand over.</p>
+      <div class="ctas">
+        <a class="btn" href="#journey">Follow one hire <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 2v12M3 9l5 5 5-5"/></svg></a>
+        <a class="btn ghost" href="#start">Try it on one of your roles</a>
       </div>
-
-      <div class="card intro" data-o="1" data-t="1" data-x="0">
-        <h3>Meet Mei.</h3>
-        <p style="margin:0;color:var(--soft)">She is applying to be a Senior Platform Engineer at Teratai Digital Bank. Follow her through the company twice: once the usual way, then with Talent Engine.</p>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <div class="ring r3"></div><div class="ring r2"></div><div class="ring r1"></div>
+      <div class="tile t1"><div class="ic" style="background:#f39a1e">✳</div><b>The job ad</b><small>says what the job is</small></div>
+      <div class="tile t2"><div class="ic" style="background:#ef476f">?</div><b>Interview guide</b><small>one stage per outcome</small><i class="k1" style="width:80%"></i><i class="k5" style="width:60%"></i></div>
+      <div class="tile t3"><div class="ic" style="background:#7c4dff">90</div><b>First 90 days</b><small>start on what matters</small></div>
+      <div class="tile t4"><div class="ic" style="background:#12a594">↗</div><b>Career path</b><small>same outcomes, bigger scope</small></div>
+      <div class="core">
+        <div class="mark"><i class="k1"></i><i class="k2"></i><i class="k3"></i><i class="k4"></i><i class="k5"></i></div>
+        <b>What must be true after 12 months</b>
+        <small>Five outcomes. Every document follows.</small>
       </div>
+      <span class="spark" style="right:30%;top:4%">✦</span><span class="spark" style="left:46%;bottom:14%;color:var(--c5);font-size:16px">✦</span>
+      <span class="note">one definition, every document</span>
+    </div>
+  </div>
+</section>
 
-      <div class="card bad" data-o="2" data-t="1" data-x="1">
-        <p class="stop">The usual way, stop 1</p>
-        <h3>She reads the job ad.</h3>
-        <div class="paper"><span class="flag">Rockstar?</span><p class="kind">Job ad</p><p>We're looking for a DevOps rockstar who thrives in a fast-paced environment and loves new tech!</p></div>
-        <p class="say">It sells a personality, not a job.</p>
-      </div>
+<section class="problem" id="problem">
+  <div class="wrap">
+    <div>
+      <h2>Four documents.<br>Four different <span style="color:var(--c5)">jobs.</span></h2>
+      <p class="lead">Most companies write the job ad, the interview, the onboarding and the promotion criteria at different times, by different people. So each one describes a different job, and nine months in nobody can say whether the hire worked.</p>
+      <span class="note">sound familiar?</span>
+    </div>
+    <div class="mess reveal" aria-hidden="true">
+      <div class="scrap s1"><span class="q">Rockstar?</span><b>Job ad</b><p>We're looking for a DevOps rockstar who thrives in a fast-paced environment!</p></div>
+      <div class="scrap s2"><span class="q">Weakness?</span><b>Interview</b><p>Tell me about yourself. What is your greatest weakness?</p></div>
+      <div class="scrap s3"><span class="q">Then what?</span><b>Onboarding</b><p>Week 1: collect laptop, read the wiki. Then get stuck in.</p></div>
+      <div class="scrap s4"><span class="q">Time served?</span><b>Promotion</b><p>Eligible after two years in role, on manager recommendation.</p></div>
+    </div>
+  </div>
+</section>
 
-      <div class="card bad" data-o="3" data-t="1" data-x="2">
-        <p class="stop">The usual way, stop 2</p>
-        <h3>The interview.</h3>
-        <div class="paper"><span class="flag">Weakness?</span><p class="kind">Interview questions</p><p>Tell me about yourself. What is your greatest weakness? Where do you see yourself in five years?</p></div>
-        <p class="say">It tests something else again.</p>
-      </div>
+<section class="question" id="question">
+  <div class="wrap">
+    <p class="eyebrow">Talent Engine starts somewhere else</p>
+    <h2>"If this person is successful, <span class="blue">what is true?</span>"</h2>
+    <p>Answer it once, in outcomes you could check after a year. Here are the five for a Senior Platform Engineer at Teratai Digital Bank, a fictional bank. We'll follow one hire.</p>
+    <ul class="outs reveal">
+      <li class="out k1"><span class="dot"></span><span><b>Reliable services</b><small>Agreed service levels, met</small></span></li>
+      <li class="out k2"><span class="dot"></span><span><b>Teams ship on their own</b><small>Several times a day</small></span></li>
+      <li class="out k3"><span class="dot"></span><span><b>Audit-ready</b><small>No high-severity findings</small></span></li>
+      <li class="out k4"><span class="dot"></span><span><b>Cost down 20%</b><small>Per active customer</small></span></li>
+      <li class="out k5"><span class="dot"></span><span><b>Calm incidents</b><small>Reviewed without blame</small></span></li>
+    </ul>
+    <span class="note">now watch them travel</span>
+  </div>
+</section>
 
-      <div class="card bad" data-o="4" data-t="1" data-x="3">
-        <p class="stop">The usual way, stop 3</p>
-        <h3>Her first week.</h3>
-        <div class="paper"><span class="flag">Then what?</span><p class="kind">Onboarding</p><p>Collect laptop, HR induction, read the team wiki. Then get stuck in.</p></div>
-        <p class="say">Nobody tells her what good looks like.</p>
-      </div>
+<div id="journey">
 
-      <div class="drift" data-o="5" data-t="1" data-x="4">
-        <p>Nine months later, nobody can say whether she succeeded.</p>
-        <span>Not Mei, not her manager, not HR. Every document described a different job.</span>
-      </div>
-
-      <div class="card good" data-o="8" data-t="2" data-x="1">
-        <p class="stop">With Talent Engine, stop 1</p>
-        <h3>She reads the job ad.</h3>
-        <div class="paper"><p class="kind">Job ad</p>
-          <p class="l k1">Set service levels for every customer-facing service, and hit them.</p>
-          <p class="l k2">Build the road that lets 60 engineers ship safely, every day.</p>
-          <p class="l k4">Cut cloud cost per customer by <span class="was">a fifth</span><span class="alt">a third</span>.</p>
-        </div>
-        <p class="say">She knows exactly what she is signing up for.</p>
-      </div>
-
-      <div class="card good" data-o="9" data-t="2" data-x="2">
-        <p class="stop">Stop 2</p>
-        <h3>The interview.</h3>
-        <div class="paper"><p class="kind">Interview guide, one stage per outcome</p>
-          <p class="l k1">Tell me about a service level you set. What happened when it slipped?</p>
-          <p class="l k5">Walk me through the worst incident you led, minute by minute.</p>
-          <p class="l k4">When did a cloud bill last surprise you? What did you change?</p>
-        </div>
-        <p class="say">Every interviewer tests a different outcome. No question asked twice.</p>
-      </div>
-
-      <div class="card good" data-o="10" data-t="2" data-x="3">
-        <p class="stop">Stop 3</p>
-        <h3>Day 1 to day 90.</h3>
-        <div class="paper"><p class="kind">Onboarding plan</p>
-          <p class="l k1">Days 31–60: agree service levels for the three most critical journeys.</p>
-          <p class="l k4">Turn on cost tagging and send the first spend report by team<span class="alt">, against the 30% target</span>.</p>
-          <p class="l k3">Days 61–90: close one audit finding with a platform control.</p>
-        </div>
-        <p class="say">Her first 90 days point at the same five outcomes.</p>
-      </div>
-
-      <div class="card good" data-o="11" data-t="2" data-x="4">
-        <p class="stop">Stop 4</p>
-        <h3>One year in.</h3>
-        <div class="paper"><p class="kind">Year-one review</p>
-          <ul class="score">
-            <li class="k1">Service levels agreed and met <b>Done</b></li>
-            <li class="k2">Teams deploy on their own <b>Done</b></li>
-            <li class="k3">Audit passed, no high findings <b>Done</b></li>
-            <li class="k4">Cost per customer <span class="was">down 22%</span><span class="alt">down 22%, target 30%</span> <b><span class="was">Done</span><span class="alt">On track</span></b></li>
-            <li class="k5">Incidents reviewed without blame <b>Done</b></li>
+<section class="step k1" id="s1" style="--pb:var(--p1)">
+  <div class="wrap">
+    <div>
+      <div class="num">01</div>
+      <h2>Know the job before you apply.</h2>
+      <span class="who">The candidate</span>
+      <p class="copy">The ad is written from the outcomes, so candidates see what they would deliver, not a list of adjectives. The right people apply, and the wrong ones rule themselves out.</p>
+      <ul class="tags"><li>Outcome-based job description</li><li>Job ad</li><li>LinkedIn version</li></ul>
+    </div>
+    <div class="mockcol">
+      <div class="win">
+        <div class="chrome"><i></i><i></i><i></i><span>teratai / senior-platform-engineer / job-ad</span></div>
+        <div class="body">
+          <h3>Build the platform a new bank runs on.</h3>
+          <p class="sub">What you will achieve in your first year</p>
+          <ul class="rows">
+            <li class="row k1"><span class="tag"></span><span class="t"><small>Reliable services</small>Set service levels for every customer-facing service, and hit them.</span></li>
+            <li class="row k2"><span class="tag"></span><span class="t"><small>Teams ship on their own</small>Build the road that lets 60 engineers ship safely, several times a day.</span></li>
+            <li class="row k4"><span class="tag"></span><span class="t"><small>Cost</small>Cut cloud cost per customer by <span class="was">a fifth</span><span class="alt">a third</span>, and show every team its spend.</span></li>
           </ul>
         </div>
-        <p class="say">Everyone can see she succeeded, because everyone agreed what success was.</p>
       </div>
+      <span class="note">written from the outcomes, not a template</span>
+    </div>
+  </div>
+</section>
 
-      <div class="card good" data-o="12" data-t="2" data-x="5">
-        <p class="stop">Stop 5</p>
-        <h3>Promoted to Staff.</h3>
-        <div class="paper"><p class="kind">Progression guide</p>
-          <p class="l k2">From building the road to making it the standard every team follows.</p>
-          <p class="l k3">From passing the audit to shaping how the bank meets risk rules.</p>
-          <p class="l k5">From mentoring the team to growing other senior engineers.</p>
+<section class="step k5" id="s2" style="--pb:var(--p3)">
+  <div class="wrap">
+    <div>
+      <div class="num">02</div>
+      <h2>Every interviewer tests something different.</h2>
+      <span class="who">The interview panel</span>
+      <p class="copy">Each stage owns one or two outcomes. Nobody asks the same question twice, every score rests on evidence, and the debrief only discusses the disagreements.</p>
+      <ul class="tags"><li>Guide per stage</li><li>Scorecard</li><li>Debrief sheet</li></ul>
+    </div>
+    <div class="mockcol">
+      <div class="win">
+        <div class="chrome"><i></i><i></i><i></i><span>teratai / senior-platform-engineer / interview-plan</span></div>
+        <div class="body">
+          <h3>Who tests what.</h3>
+          <p class="sub">Four stages, five outcomes, no overlap</p>
+          <ul class="rows">
+            <li class="row k1 sel"><span class="tag"></span><span class="t"><small>Hiring manager</small>"Tell me about a service level you set. What happened when it slipped?"</span><span class="ok"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M2.5 6.5l2.2 2.2L9.5 3.5"/></svg></span></li>
+            <li class="row k2"><span class="tag"></span><span class="t"><small>Technical exercise</small>Design the path from commit to production for a new service.</span></li>
+            <li class="row k3"><span class="tag"></span><span class="t"><small>Risk and security</small>"Show us audit evidence your platform produced on its own."</span></li>
+            <li class="row k5"><span class="tag"></span><span class="t"><small>Final</small>"Walk me through the worst incident you led, minute by minute."</span></li>
+          </ul>
         </div>
-        <p class="say">Her next step builds on the same outcomes.</p>
       </div>
+      <div class="prompt k5"><span>Each interviewer scores alone, then the panel compares evidence.</span><span class="send"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M7 12V2M3 6l4-4 4 4"/></svg></span></div>
+      <span class="note">no question asked twice</span>
+    </div>
+  </div>
+</section>
 
-      <div class="card good" data-o="13" data-t="2" data-x="6">
-        <p class="stop">Stop 6</p>
-        <h3>She moves on.</h3>
-        <div class="paper"><p class="kind">Handover plan</p>
-          <p class="l k1">Service dashboards and their owners handed to the platform lead.</p>
-          <p class="l k3">Audit evidence and controls written up for whoever comes next.</p>
-          <p class="l k5">Two engineers can run every part of the platform without her.</p>
+<section class="step k4" id="s3" style="--pb:var(--p4)">
+  <div class="wrap">
+    <div>
+      <div class="num">03</div>
+      <h2>Day one, she knows what good looks like.</h2>
+      <span class="who">The new hire</span>
+      <p class="copy">Her first 90 days point at the same five outcomes. Learn, then contribute, then own, with a check-in at each step and a manager who knows what to look for.</p>
+      <ul class="tags"><li>30-60-90 day plan</li><li>Manager checklist</li><li>Buddy guide</li></ul>
+    </div>
+    <div class="mockcol">
+      <div class="win">
+        <div class="chrome"><i></i><i></i><i></i><span>teratai / senior-platform-engineer / first-90-days</span></div>
+        <div class="body">
+          <h3>Learn. Contribute. Own.</h3>
+          <p class="sub">Every task traces back to an outcome</p>
+          <div class="cols">
+            <div class="col"><b>Days 1–30</b><p class="k1">Map every service, owner and dependency</p><p class="k5">Shadow on-call; read the last six incident reviews</p></div>
+            <div class="col"><b>Days 31–60</b><p class="k1">Agree service levels for the three critical journeys</p><p class="k4">Send the first spend report by team<span class="alt">, against the 30% target</span></p></div>
+            <div class="col"><b>Days 61–90</b><p class="k2">Agree the paved-road design with two teams</p><p class="k3">Close one audit finding with a platform control</p></div>
+          </div>
         </div>
-        <p class="say">When she leaves, what she built stays.</p>
       </div>
-    </div>
-
-    <div class="shade" id="shade"></div>
-    <div class="ov question" id="question">
-      <div class="rw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M11 19 4 12l7-7"/><path d="M20 19l-7-7 7-7"/></svg>Rewind. This time, start with one question.</div>
-      <p>"If this person is successful, what is true?"</p>
-    </div>
-    <div class="ov outcomes" id="outcomes">
-      <p class="lead">For Mei's role, the answer is five outcomes. Each gets a colour.</p>
-      <ul class="chips">
-        <li class="chip k1"><b>Reliable services</b><span>Every customer-facing service has an agreed service level</span></li>
-        <li class="chip k2"><b>Teams ship on their own</b><span>Product teams deploy several times a day</span></li>
-        <li class="chip k3"><b>Audit-ready</b><span>Risk controls pass with no high findings</span></li>
-        <li class="chip k4"><b>Cost <i class="was">−20%</i><i class="alt">−30%</i></b><span>Cloud cost per customer</span></li>
-        <li class="chip k5"><b>Calm incidents</b><span>Every major incident reviewed without blame</span></li>
-      </ul>
-    </div>
-    <div class="ov coda" id="coda">
-      <h2>When the role changes, change the outcome once.</h2>
-      <p>The cost target moves from 20% to 30%. Every document along Mei's path follows.</p>
-      <button class="btn" type="button" id="change">Change the cost target to 30%</button>
-    </div>
-    <div class="progress" id="progress"></div>
-  </div>
-</section>
-
-<section class="band">
-  <div class="wrap">
-    <h2>Every document on that path, built for your roles.</h2>
-    <p class="lead">You receive finished documents, written in your language and built from your strategy. Nobody has to learn a tool, and you own everything delivered.</p>
-    <div class="get">
-      <div class="pack role">
-        <h3>For each role you are hiring</h3>
-        <ul><li>Outcome-based job description</li><li>Job ad and LinkedIn version</li><li>An interview guide for each stage</li><li>Scorecard and debrief sheet</li><li>30-60-90 day onboarding plan</li></ul>
-        <p>Within three working days of a short call.</p>
-      </div>
-      <div class="pack fn">
-        <h3>For a whole function</h3>
-        <ul><li>Every role and level</li><li>Career paths</li><li>Progression guides</li><li>Readiness checks</li><li>Reviews and improvement plans</li><li>Offboarding and handover</li></ul>
-        <p>Kept current as roles change.</p>
-      </div>
+      <span class="note">every task points at an outcome</span>
     </div>
   </div>
 </section>
 
-<section class="band who">
+<section class="step k2" id="s4" style="--pb:var(--p2)">
   <div class="wrap">
-    <h2>For whoever owns the hire.</h2>
-    <div class="people">
-      <div class="person k1"><h3>HR leaders</h3><p>One consistent system across hiring, growth and performance that you can explain and defend, without a six-month project.</p></div>
-      <div class="person k2"><h3>CEOs</h3><p>Hiring and promotion tied to what the business needs delivered, not to job titles or who interviews best.</p></div>
-      <div class="person k5"><h3>Function leaders</h3><p>For a CTO, CFO or head of sales: roles defined in your terms, interviews that test them, and a career path your people believe.</p></div>
+    <div>
+      <div class="num">04</div>
+      <h2>A review without the guesswork.</h2>
+      <span class="who">The manager</span>
+      <p class="copy">One year in, the review measures the same five outcomes the ad promised. Everyone can see whether she succeeded, because everyone agreed what success was.</p>
+      <ul class="tags"><li>Year-one review</li><li>Self, peer and manager assessment</li></ul>
+    </div>
+    <div class="mockcol">
+      <div class="win">
+        <div class="chrome"><i></i><i></i><i></i><span>teratai / senior-platform-engineer / year-one-review</span></div>
+        <div class="body">
+          <h3>Year one.</h3>
+          <p class="sub">Against the outcomes set before she was hired</p>
+          <ul class="rows">
+            <li class="row k1"><span class="tag"></span><span class="t">Service levels agreed and met<div class="bar2"><i style="--w:100%"></i></div></span></li>
+            <li class="row k2"><span class="tag"></span><span class="t">Teams deploying on their own<div class="bar2"><i style="--w:90%"></i></div></span></li>
+            <li class="row k3"><span class="tag"></span><span class="t">Audit passed, no high findings<div class="bar2"><i style="--w:100%"></i></div></span></li>
+            <li class="row k4"><span class="tag"></span><span class="t">Cost per customer down 22%<span class="alt"> (new target 30%)</span><div class="bar2"><i style="--w:100%"></i></div></span></li>
+            <li class="row k5"><span class="tag"></span><span class="t">Major incidents reviewed without blame<div class="bar2"><i style="--w:95%"></i></div></span></li>
+          </ul>
+        </div>
+      </div>
+      <span class="note">everyone agreed what success was</span>
     </div>
   </div>
 </section>
 
-<section class="band" id="start">
+<section class="step k3" id="s5" style="--pb:var(--p5)">
   <div class="wrap">
-    <h2>Start with one of your own roles.</h2>
-    <p class="lead">Each step stands on its own. Decide on the next one after you have seen the last.</p>
-    <ol class="path">
-      <li class="k2"><h3>A free sample</h3><p>Send one real job description. You get the full set back, side by side with what you use today.</p></li>
-      <li class="k1"><h3>Hiring packs</h3><p>For the roles you are recruiting now.</p></li>
-      <li class="k3"><h3>A whole function</h3><p>Every role and level in one team, on the same outcomes.</p></li>
+    <div>
+      <div class="num">05</div>
+      <h2>A next step people believe in.</h2>
+      <span class="who">The team</span>
+      <p class="copy">Promotion is the same outcomes at a bigger scope, not time served or who shouts loudest. People can see the step, and the evidence that shows they are ready.</p>
+      <ul class="tags"><li>Progression guide</li><li>Readiness check</li><li>Career path</li></ul>
+    </div>
+    <div class="mockcol">
+      <div class="win">
+        <div class="chrome"><i></i><i></i><i></i><span>teratai / platform / senior-to-staff</span></div>
+        <div class="body">
+          <h3>Senior to Staff.</h3>
+          <p class="sub">"Is my platform reliable?" becomes "Is the bank's engineering reliable, because of standards I set?"</p>
+          <ul class="rows">
+            <li class="row k2"><span class="tag"></span><span class="t vs"><span class="from">Builds the paved road</span><span class="arrow">→</span><span class="to">Makes it the standard every team follows</span></span></li>
+            <li class="row k3"><span class="tag"></span><span class="t vs"><span class="from">Passes the audit</span><span class="arrow">→</span><span class="to">Shapes how the bank meets risk rules</span></span></li>
+            <li class="row k5"><span class="tag"></span><span class="t vs"><span class="from">Mentors the team</span><span class="arrow">→</span><span class="to">Grows other senior engineers</span></span></li>
+          </ul>
+        </div>
+      </div>
+      <span class="note">same outcomes, bigger scope</span>
+    </div>
+  </div>
+</section>
+
+<section class="step k2" id="s6" style="--pb:var(--p6)">
+  <div class="wrap">
+    <div>
+      <div class="num">06</div>
+      <h2>When people move on, the work stays.</h2>
+      <span class="who">The business</span>
+      <p class="copy">The handover is built from the same outcomes too, so what she built, and how to keep it running, is written down before her last day.</p>
+      <ul class="tags"><li>Handover plan</li><li>Knowledge transfer</li><li>Offboarding</li></ul>
+    </div>
+    <div class="mockcol">
+      <div class="win">
+        <div class="chrome"><i></i><i></i><i></i><span>teratai / senior-platform-engineer / handover</span></div>
+        <div class="body">
+          <h3>Keep it running.</h3>
+          <p class="sub">Handover checklist</p>
+          <ul class="rows">
+            <li class="row k1"><span class="tag"></span><span class="t">Service dashboards and owners handed to the platform lead</span><span class="ok"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M2.5 6.5l2.2 2.2L9.5 3.5"/></svg></span></li>
+            <li class="row k3"><span class="tag"></span><span class="t">Audit evidence and controls written up for whoever comes next</span><span class="ok"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M2.5 6.5l2.2 2.2L9.5 3.5"/></svg></span></li>
+            <li class="row k5"><span class="tag"></span><span class="t">Two engineers can run every part of the platform without her</span><span class="ok"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M2.5 6.5l2.2 2.2L9.5 3.5"/></svg></span></li>
+          </ul>
+        </div>
+      </div>
+      <span class="note">what she built stays</span>
+    </div>
+  </div>
+</section>
+</div>
+
+<section class="change" id="change">
+  <div class="wrap">
+    <div>
+      <h2>Roles change. <span style="color:var(--c4)">Change it once.</span></h2>
+      <p>The bank raises the cost target from 20% to 30%. Change the outcome, and every document that depends on it is rebuilt to match. Try it.</p>
+      <button class="switch" type="button" id="switch" aria-pressed="false">Cost target 30% <span class="knob"></span></button>
+    </div>
+    <div class="minis" aria-live="polite">
+      <div class="mini"><b>Job ad</b><p>Cut cloud cost per customer by <span class="was">a fifth</span><span class="alt">a third</span>.</p></div>
+      <div class="mini"><b>Interview, risk stage</b><p>"How would you take <span class="was">20%</span><span class="alt">30%</span> out of our cloud bill in a year?"</p></div>
+      <div class="mini"><b>First 90 days</b><p>Send the first spend report by team<span class="alt">, against the 30% target</span>.</p></div>
+      <div class="mini"><b>Year-one review</b><p>Cost per customer down <span class="was">20%</span><span class="alt">30%</span>.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="offer" id="start">
+  <div class="wrap">
+    <h2>Start with one of <span class="blue">your</span> roles.</h2>
+    <p class="lead">Finished documents, written in your language and built from your strategy. Nobody has to learn a tool, and you own everything delivered.</p>
+    <ol class="steps3">
+      <li class="k2"><div class="n">01</div><h3>A free sample</h3><p>Send one real job description. You get the full set back, side by side with what you use today.</p></li>
+      <li class="k1"><div class="n">02</div><h3>Hiring packs</h3><p>For the roles you are recruiting now, within three working days of a short call.</p></li>
+      <li class="k3"><div class="n">03</div><h3>A whole function</h3><p>Every role and level in one team, on the same outcomes, kept current as roles change.</p></li>
     </ol>
-    <div class="promise">
-      <div><h3>AI drafts. Your HR validates.</h3><p>Nothing goes live until people who know your organisation sign it off.</p></div>
-      <div><h3>Roles, not people.</h3><p>We work from job descriptions and your structure. No employee data.</p></div>
-      <div><h3>Your context, not a template.</h3><p>Built from your strategy and your roles, in your language.</p></div>
+    <ul class="promise">
+      <li><b>AI drafts. Your HR validates.</b> Nothing goes live without sign-off.</li>
+      <li><b>Roles, not people.</b> No employee data needed.</li>
+      <li><b>For HR, CEOs and function leaders.</b></li>
+    </ul>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap">
+    <div class="cloud" aria-hidden="true">
+      <span class="chipf f1">Job ad</span><span class="chipf f2">Interview guide</span><span class="chipf f3">First 90 days</span><span class="chipf f4">Career path</span><span class="chipf f5">Handover</span>
+      <div class="logo-big"><i class="k1" style="width:100%"></i><i class="k2" style="width:72%"></i><i class="k4" style="width:86%"></i></div>
     </div>
+    <h2>Define success once.<br><span class="blue">Everything follows.</span></h2>
+    <p>Send a job description you are hiring for, or one you think is weak. We'll send back the full set, free.</p>
+    <div class="ctas"><a class="btn" href="mailto:hello@talent-engine.app?subject=A%20role%20for%20Talent%20Engine">hello@talent-engine.app</a></div>
+    <div class="byline"><span class="av" aria-hidden="true"></span><p><b>Run by Norman Noble</b>, a technology leader who has scaled engineering and people systems across APAC. Every engagement starts with a conversation with him.</p></div>
   </div>
 </section>
 </main>
-
-<section class="end">
-  <div class="threads" aria-hidden="true">
-    <i class="k1" style="top:18%"></i><i class="k2" style="top:30%"></i><i class="k3" style="top:42%"></i><i class="k4" style="top:54%"></i><i class="k5" style="top:66%"></i>
-  </div>
-  <div class="wrap">
-    <div class="norman">
-      <h2>Run by Norman Noble.</h2>
-      <div>
-        <p>Norman is a technology leader who has scaled engineering and people systems across APAC.</p>
-        <p>Every engagement starts with a conversation with him, and he oversees every document delivered.</p>
-      </div>
-    </div>
-    <div class="ask">
-      <p>Send a job description you are hiring for, or one you think is weak. We'll send back the full set, free.</p>
-      <a class="big" href="mailto:hello@talent-engine.app?subject=A%20role%20for%20Talent%20Engine">hello@talent-engine.app</a>
-    </div>
-    <footer>© 2026 Talent Engine. Mei and Teratai Digital Bank are fictional.</footer>
-  </div>
-</section>
+<footer>© 2026 Talent Engine. Teratai Digital Bank is fictional.</footer>
 
 <script>
 (function(){
-  var root=document.documentElement, sec=document.getElementById('journey'), jv=document.getElementById('jv'),
-      world=document.getElementById('world'), mei=document.getElementById('mei'),
-      shade=document.getElementById('shade'), q=document.getElementById('question'),
-      oc=document.getElementById('outcomes'), coda=document.getElementById('coda'),
-      prog=document.getElementById('progress'), t1=document.getElementById('track1'), t2=document.getElementById('track2');
-  var cards=[].slice.call(world.querySelectorAll('[data-x]'));
-  var mode, W, H, S, LANE, MEI_X;
-  var COLS=['#3d6bff','#12b5a5','#8a5cf6','#f5a524','#ff5a5f'];
-
-  function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
-  function seg(p,a,b){return clamp((p-a)/(b-a),0,1)}
-  function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
-  function stairs(t){var i=Math.floor(t),f=t-i; f=f<.4?0:f>.92?1:ease((f-.4)/.52); return i+f}
-  function wave(len,amp,off){var d='M0 '+(30+off), n=Math.ceil(len/120);
-    for(var i=1;i<=n;i++){var x=i*120; d+=' Q'+(x-60)+' '+(30+off+(i%2?amp:-amp))+' '+x+' '+(30+off);} return d}
-
-  function layout(){
-    W=innerWidth; H=innerHeight; S=Math.max(560,W*.62); LANE=H*.74; MEI_X=W*.2;
-    var len1=S*4.6, len2=S*7.4;
-    t1.setAttribute('width',len1); t1.setAttribute('height',80); t1.style.left='0px'; t1.style.top=(LANE-30)+'px';
-    t1.innerHTML='<path d="'+wave(S*3.7,10,0)+'" fill="none" stroke="#b9bcd2" stroke-width="6" stroke-linecap="round" stroke-dasharray="2 14"/>'+
-      '<path d="M'+(S*3.7)+' 30 q40 -30 80 10 t70 -20 t60 40 t80 -10" fill="none" stroke="#b9bcd2" stroke-width="6" stroke-linecap="round" stroke-dasharray="2 14"/>';
-    var g='';
-    for(var k=0;k<5;k++){g+='<path d="'+wave(len2,10,(k-2)*7)+'" fill="none" stroke="'+COLS[k]+'" stroke-width="5" stroke-linecap="round"/>';}
-    for(var s=1;s<=6;s++){g+='<circle cx="'+(S*s)+'" cy="30" r="13" fill="#fff" stroke="#16172e" stroke-width="4"/>';}
-    t2.setAttribute('width',len2); t2.setAttribute('height',80); t2.style.left='0px'; t2.style.top=(H+LANE-30)+'px';
-    t2.innerHTML=g;
-    cards.forEach(function(c){
-      var x=+c.dataset.x, t=+c.dataset.t, h=c.offsetHeight;
-      c.style.left=(x*S+(x===0?MEI_X+60:70))+'px';
-      c.style.top=((t-1)*H+Math.max(70,LANE-60-h))+'px';
-    });
-  }
-
-  function frame(){
-    var r=sec.getBoundingClientRect(), total=sec.offsetHeight-H, p=clamp(-r.top/total,0,1);
-    var B=[0,.03,.3,.36,.45,.52,.88,1];
-    var camX, camY=0, sc=1, mx, my=LANE-118, drift=seg(p,B[2],B[3]);
-    // walking position
-    if(p<B[2]){ mx=S*stairs(seg(p,B[1],B[2])*3.7); }
-    else if(p<B[3]){ mx=S*(3.7+drift*.5); my+=drift*70; }
-    else if(p<B[4]){ var rw=ease(seg(p,B[3],B[4])); mx=S*4.2*(1-rw); camY=H*rw; my=LANE-118+H*rw; }
-    else if(p<B[5]){ mx=0; camY=H; my=H+LANE-118; }
-    else { mx=S*stairs(seg(p,B[5],B[6])*6.6); camY=H; my=H+LANE-118; }
-    camX=mx-MEI_X;
-    if(p>=B[6]){ var z=ease(seg(p,B[6],B[7])), fit=Math.min(1,(W*.96)/(S*6.5));
-      sc=1+(fit-1)*z;
-      camX=camX*(1-z)+(S*.75-W*.02/fit)*z;
-      camY=H*(1-z)+(H-H*.26/fit)*z; }
-    world.style.transform='translate('+(-camX*sc)+'px,'+(-camY*sc)+'px) scale('+sc+')';
-    mei.style.transform='translate('+mx+'px,'+my+'px) rotate('+(drift*14*(p<B[3]?1:0))+'deg)';
-    mei.style.opacity=(p>B[2]&&p<B[4])?(1-drift*.6):1;
-    mei.style.left='0px'; mei.style.top='0px';
-    mei.classList.toggle('good',p>=B[4]);
-    // overlays
-    var qa=seg(p,B[3]+.005,B[3]+.025), qb=1-seg(p,B[4]-.01,B[4]+.02);
-    shade.style.opacity=Math.min(qa,qb)*.96; q.style.opacity=Math.min(qa,qb);
-    oc.style.opacity=p>=B[4]-.005?1:0;
-    oc.classList.toggle('show',p>=B[4]);
-    oc.classList.toggle('legend',p>=B[4]+.035);
-    coda.style.opacity=seg(p,B[6]+.04,B[6]+.07);
-    root.classList.toggle('changed',p>=B[6]+.08);
-    var fade=1-seg(p,B[6],B[6]+.03); t1.style.opacity=fade; world.querySelectorAll('.bad,.intro,.drift').forEach(function(e){e.style.opacity=fade});
-    prog.style.transform='scaleX('+p+')';
-  }
-
-  var last=null, idle;
-  function onScroll(){
-    if(mode!=='cine')return;
-    var before=mei.style.transform; frame();
-    if(mei.style.transform!==before){ mei.classList.add('walking'); clearTimeout(idle); idle=setTimeout(function(){mei.classList.remove('walking')},140); }
-  }
-
-  function setMode(){
-    var cine=innerWidth>900 && !matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var m=cine?'cine':'static';
-    root.classList.toggle('cine',cine); root.classList.toggle('static',!cine);
-    mode=m;
-    if(cine){ layout(); frame(); }
-    else {
-      world.style.transform=''; mei.style.transform=''; mei.style.opacity='';
-      cards.forEach(function(c){c.style.left='';c.style.top='';});
-      [shade,q,oc,coda].forEach(function(e){e.style.opacity='';});
-      oc.classList.remove('legend','show'); root.classList.remove('changed');
-    }
-  }
-  // static mode: Mei turns colourful once the good run begins
-  var firstGood=world.querySelector('.card.good');
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es){es.forEach(function(e){ if(mode==='static') mei.classList.toggle('good', e.boundingClientRect.top<innerHeight*.6); });},{threshold:[0,1]}).observe(firstGood);
-  }
-  document.getElementById('change').addEventListener('click',function(){
-    root.classList.add('changed'); this.textContent='Changed. Scroll up to see what moved.'; this.disabled=true;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  },{threshold:.28});
+  document.querySelectorAll('.step,.reveal').forEach(function(el){io.observe(el)});
+  var links=[].slice.call(document.querySelectorAll('#rail a'));
+  var targets=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  var spy=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ var i=targets.indexOf(e.target); links.forEach(function(a,j){a.classList.toggle('on',j===i)}); } });
+  },{rootMargin:'-50% 0px -50% 0px'});
+  targets.forEach(function(t){ if(t) spy.observe(t) });
+  var sw=document.getElementById('switch');
+  sw.addEventListener('click',function(){
+    var on=document.documentElement.classList.toggle('changed');
+    sw.setAttribute('aria-pressed',on);
   });
-  addEventListener('scroll',onScroll,{passive:true});
-  addEventListener('resize',function(){setMode()});
-  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(setMode)}
-  setMode();
 })();
 </script>
 </body>
