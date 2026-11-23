@@ -226,6 +226,31 @@ footer{padding:50px 0 40px;text-align:center;color:var(--soft);font-size:14px}
 .more:hover{border-bottom-color:var(--k)}
 .cross{font-size:17px!important;margin-top:28px!important}
 .cross a{color:var(--blue);font-weight:600;text-decoration:none}
-@media (max-width:960px){.bar nav a.here,.bar nav a[href="careers.html"],.bar nav a[href="index.html"]{display:inline}}
+@media (max-width:960px){.bar nav a.here,.bar nav a[href="careers.html"],.bar nav a[href="index.html"],.bar nav a[href="performance.html"]{display:inline}}
 @media (max-width:560px){.bar nav{gap:14px;font-size:14px}.bar .pill-btn{display:none}}
 .question .eyebrow{margin:0 auto}
+
+/* shared story parts: sticky-note questions, question list, statuses, three-scrap problem */
+.qn{position:absolute;font:600 27px/1.05 var(--hand);color:#2f3442;padding:16px 18px 18px;border-radius:6px 6px 18px 6px;box-shadow:0 20px 40px -24px rgba(20,30,80,.4);animation:float 6s ease-in-out infinite;max-width:190px}
+.qn::before{content:"";position:absolute;left:50%;top:-9px;width:54px;height:18px;transform:translateX(-50%) rotate(-3deg);background:rgba(255,255,255,.65);border-radius:3px}
+.q1{left:0;top:6%;background:#fde7c8;--r:-6deg;transform:rotate(-6deg)}
+.q2{right:-4%;top:8%;background:#f9dbe8;--r:5deg;transform:rotate(5deg);animation-delay:-2s}
+.q3{left:2%;bottom:4%;background:#e3ebfe;--r:4deg;transform:rotate(4deg);animation-delay:-4s}
+.q4{right:0;bottom:0;background:#ece6fd;--r:-4deg;transform:rotate(-4deg);animation-delay:-1s}
+.problem .mess .s1{left:0;top:0}.problem .mess .s2{right:0;top:140px}.problem .mess .s3{left:6%;bottom:0;top:auto}
+.qs{display:grid;gap:12px;margin:48px auto 0;max-width:760px;list-style:none;padding:0;text-align:left}
+.qs .out{padding:16px 18px}
+.qs .out b{font-size:18px}
+.qs .n{font:800 15px/1 var(--display);color:var(--k);width:28px;flex:none}
+.step h2.long{font-size:clamp(34px,3.8vw,52px)}
+.status{flex:none;font:600 12px/1 var(--sans);padding:6px 9px;border-radius:999px;background:color-mix(in srgb,var(--k) 14%,#fff);color:color-mix(in srgb,var(--k) 75%,#000)}
+.status.gap{background:#fde4ea;color:#a3284b}
+.status.close{background:#fdf0dc;color:#8a5a12}
+.conv{display:grid;gap:10px}
+.conv .row .t small{color:var(--soft)}
+.steps2{grid-template-columns:repeat(2,1fr)!important;max-width:860px}
+@media (max-width:560px){
+  .qn{font-size:22px;max-width:150px;padding:12px 14px}
+  .steps2{grid-template-columns:1fr!important}
+}
+@media (max-width:560px){.logo .lt{display:none}}

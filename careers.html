@@ -18,12 +18,6 @@
 /* careers page only */
 .hero.cr{background:var(--p2)}
 .hero.cr .ring{border-color:#bfe3d7}
-.qn{position:absolute;font:600 27px/1.05 var(--hand);color:#2f3442;padding:16px 18px 18px;border-radius:6px 6px 18px 6px;box-shadow:0 20px 40px -24px rgba(20,30,80,.4);animation:float 6s ease-in-out infinite;max-width:190px}
-.qn::before{content:"";position:absolute;left:50%;top:-9px;width:54px;height:18px;transform:translateX(-50%) rotate(-3deg);background:rgba(255,255,255,.65);border-radius:3px}
-.q1{left:0;top:6%;background:#fde7c8;--r:-6deg;transform:rotate(-6deg)}
-.q2{right:-4%;top:8%;background:#f9dbe8;--r:5deg;transform:rotate(5deg);animation-delay:-2s}
-.q3{left:2%;bottom:4%;background:#e3ebfe;--r:4deg;transform:rotate(4deg);animation-delay:-4s}
-.q4{right:0;bottom:0;background:#ece6fd;--r:-4deg;transform:rotate(-4deg);animation-delay:-1s}
 .lad{list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column-reverse;gap:7px}
 .lad li{display:flex;align-items:center;gap:10px;font:600 13.5px/1 var(--sans);color:var(--soft)}
 .lad li i{height:10px;border-radius:5px;background:#e6e4de;flex:none}
@@ -34,14 +28,8 @@
 .hero.cr .core{width:270px}
 .lad em{white-space:nowrap;font:600 18px/1 var(--hand);font-style:normal;color:var(--c2);margin-left:auto}
 
-.problem .mess .s1{left:0;top:0}.problem .mess .s2{right:0;top:140px}.problem .mess .s3{left:6%;bottom:0;top:auto}
 
-.qs{display:grid;gap:12px;margin:48px auto 0;max-width:760px;list-style:none;padding:0;text-align:left}
-.qs .out{padding:16px 18px}
-.qs .out b{font-size:18px}
-.qs .n{font:800 15px/1 var(--display);color:var(--k);width:28px;flex:none}
 
-.step h2.long{font-size:clamp(34px,3.8vw,52px)}
 .lvl{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;opacity:0;transform:translateX(20px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .step.in .lvl{opacity:1;transform:none}
 .lvl .t{flex:1;font-size:15px;line-height:1.35}
@@ -55,12 +43,6 @@
 .branch{margin:16px 0 0}
 .branch .or{display:block;font:600 22px/1 var(--hand);color:var(--k);margin:0 0 8px 4px}
 .branch .lvl{border-style:dashed;transition-delay:1s}
-.status{flex:none;font:600 12px/1 var(--sans);padding:6px 9px;border-radius:999px;background:color-mix(in srgb,var(--k) 14%,#fff);color:color-mix(in srgb,var(--k) 75%,#000)}
-.status.gap{background:#fde4ea;color:#a3284b}
-.status.close{background:#fdf0dc;color:#8a5a12}
-.conv{display:grid;gap:10px}
-.conv .row .t small{color:var(--soft)}
-.steps2{grid-template-columns:repeat(2,1fr)!important;max-width:860px}
 .origin{margin:90px auto 0;max-width:680px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px 28px;display:flex;gap:18px;align-items:flex-start}
 .origin .av{width:52px;height:52px;border-radius:50%;background:conic-gradient(var(--c1) 0 20%,var(--c2) 0 40%,var(--c3) 0 60%,var(--c4) 0 80%,var(--c5) 0);flex:none;display:grid;place-items:center}
 .origin .av::after{content:"N";width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;font:800 18px/1 var(--display)}
@@ -68,8 +50,6 @@
 .origin cite{display:block;margin-top:12px;font-style:normal;font-size:15px;color:var(--soft)}
 .origin cite b{color:var(--ink)}
 @media (max-width:560px){
-  .qn{font-size:22px;max-width:150px;padding:12px 14px}
-  .steps2{grid-template-columns:1fr!important}
   .origin{flex-direction:column}
 }
 </style>
@@ -78,8 +58,8 @@
 
 <header class="bar">
   <div class="wrap">
-    <a class="logo" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="6" width="22" height="5" rx="2.5" fill="#2457e6"/><rect x="5" y="13.5" width="16" height="5" rx="2.5" fill="#12a594"/><rect x="5" y="21" width="19" height="5" rx="2.5" fill="#f39a1e"/></svg>Talent Engine</a>
-    <nav><a href="index.html">Hiring</a><a href="careers.html" aria-current="page" class="here">Careers</a><a class="pill-btn" href="mailto:hello@talent-engine.app?subject=One%20role%27s%20next%20step">Send us a role</a></nav>
+    <a class="logo" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="6" width="22" height="5" rx="2.5" fill="#2457e6"/><rect x="5" y="13.5" width="16" height="5" rx="2.5" fill="#12a594"/><rect x="5" y="21" width="19" height="5" rx="2.5" fill="#f39a1e"/></svg><span class="lt">Talent Engine</span></a>
+    <nav><a href="index.html">Hiring</a><a href="careers.html" aria-current="page" class="here">Careers</a><a href="performance.html">Performance</a><a class="pill-btn" href="mailto:hello@talent-engine.app?subject=One%20role%27s%20next%20step">Send us a role</a></nav>
   </div>
 </header>
 
@@ -169,6 +149,7 @@
       <span class="who">The engineer</span>
       <p class="copy">Not a rating out of five. The outcomes they were hired against, with the evidence beside each one, so the engineer and their manager read from the same page.</p>
       <ul class="tags"><li>Outcome scorecard</li><li>Evidence log</li></ul>
+      <a class="more" href="performance.html">See the whole year →</a>
     </div>
     <div class="mockcol">
       <div class="win">
@@ -349,6 +330,7 @@
     <p>Send one role, ideally one where people keep asking what's next. We'll send back what the next level up asks, free.</p>
     <div class="ctas"><a class="btn" href="mailto:hello@talent-engine.app?subject=One%20role%27s%20next%20step">hello@talent-engine.app</a></div>
     <p class="cross">Hiring for a role? <a href="index.html#journey">Follow one hire →</a></p>
+    <p class="cross" style="margin-top:8px!important">Managing a team? <a href="performance.html">See the whole year →</a></p>
     <div class="origin"><span class="av" aria-hidden="true"></span>
       <div><blockquote>“I built Talent Engine after reading an anonymous review from someone on my team: they didn't know where their career was going, or who to ask. Nobody should have to write that.”</blockquote>
       <cite><b>Norman Noble</b>, a technology leader who has scaled engineering and people systems across APAC.</cite></div>
