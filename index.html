@@ -4,233 +4,416 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Talent Engine</title>
-<meta name="description" content="Define what success looks like in a role once. Talent Engine builds the job ad, interview guides, onboarding plan and progression guide from it, so every document asks for the same thing.">
-<meta property="og:title" content="Talent Engine — define success once">
-<meta property="og:description" content="Every hiring and people document for a role, built from one definition of success.">
+<meta name="description" content="Your job ad, interviews, onboarding and promotion criteria should describe the same job. Talent Engine defines what success looks like in a role, then builds every people document from it.">
+<meta property="og:title" content="Talent Engine — one definition of success, every document">
+<meta property="og:description" content="Define what success looks like in a role once. Every hiring and people document follows from it.">
 <meta property="og:url" content="https://talent-engine.app/">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4d3a'/%3E%3Crect x='8' y='9' width='16' height='4' rx='1' fill='%23f2e27d'/%3E%3Crect x='8' y='16' width='10' height='2.5' rx='1' fill='%23fff'/%3E%3Crect x='8' y='21' width='13' height='2.5' rx='1' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2316172e'/%3E%3Crect x='7' y='7' width='18' height='3' rx='1.5' fill='%233d6bff'/%3E%3Crect x='7' y='12' width='14' height='3' rx='1.5' fill='%2312b5a5'/%3E%3Crect x='7' y='17' width='16' height='3' rx='1.5' fill='%238a5cf6'/%3E%3Crect x='7' y='22' width='11' height='3' rx='1.5' fill='%23f5a524'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ground:#e8ebe6;
-  --paper:#ffffff;
-  --ink:#18211d;
-  --soft:#56615b;
-  --rule:#d3d8d1;
-  --green:#1f4d3a;
-  --marker:#f2e27d;
+  --night:#16172e; --night-2:#22244a;
+  --light:#f6f6fb; --paper:#ffffff;
+  --ink:#16172e; --soft:#5d6080; --rule:#dedff0;
+  --c1:#3d6bff; /* reliability */
+  --c2:#12b5a5; /* paved road */
+  --c3:#8a5cf6; /* audit */
+  --c4:#f5a524; /* cost */
+  --c5:#ff5a5f; /* incidents */
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
   --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --doc:"Source Serif 4",Georgia,serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--ground);color:var(--ink);font:400 17px/1.55 var(--sans)}
-a{color:var(--green);text-underline-offset:3px}
-:focus-visible{outline:3px solid var(--green);outline-offset:3px}
-.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--light);color:var(--ink);font:400 17px/1.55 var(--sans)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--c1);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.02em}
 
-.top{display:flex;justify-content:space-between;align-items:center;padding:24px 0}
-.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px;color:var(--ink);text-decoration:none}
-.brand svg{width:26px;height:26px}
-.top a.contact{font-weight:500;font-size:15px}
+/* ---------- hero ---------- */
+.hero{background:var(--night);color:#fff;overflow:hidden;position:relative}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0}
+.brand{display:flex;align-items:center;gap:10px;font:700 19px/1 var(--display);text-decoration:none;color:#fff}
+.brand svg{width:28px;height:28px}
+.nav a.mail{font-weight:500;font-size:15px;color:#c9cbef;text-decoration:none;border-bottom:1px solid #4a4d85}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:56px 0 110px}
+.hero h1{font-size:clamp(40px,5.6vw,72px);line-height:1;font-weight:800}
+.hero p.sub{font-size:20px;color:#c9cbef;margin:24px 0 34px;max-width:30em}
+.btn{display:inline-block;font:600 16px/1 var(--sans);padding:16px 22px;border-radius:999px;text-decoration:none}
+.btn.solid{background:#fff;color:var(--night)}
+.btn.line{color:#fff;border:1.5px solid #4a4d85;margin-left:8px}
+.hero .btns{display:flex;flex-wrap:wrap;gap:10px}
 
-.head{padding:56px 0 40px;display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:end}
-h1{font:600 clamp(40px,6.2vw,76px)/1.0 var(--sans);letter-spacing:-.035em;margin:0}
-.head p{margin:0;font-size:19px;color:var(--soft);max-width:30em}
+/* hero art: messy documents snap into line */
+.art{position:relative;height:440px}
+.mini{position:absolute;width:46%;background:#fff;border-radius:10px;padding:16px 16px 14px;box-shadow:0 18px 40px -16px rgba(0,0,0,.55);animation:settle 1.1s var(--ease) 1.1s both}
+.mini b{display:block;font:600 12px/1 var(--sans);color:var(--soft);margin-bottom:12px}
+.mini i{display:block;height:9px;border-radius:5px;background:#e3e4ef;margin:7px 0;animation:tint .7s ease both}
+.m1{left:2%;top:4%;--r:-9deg;--x:-22px;--y:18px}
+.m2{right:2%;top:0;--r:7deg;--x:30px;--y:-10px}
+.m3{left:6%;bottom:2%;--r:6deg;--x:-30px;--y:24px}
+.m4{right:0;bottom:6%;--r:-6deg;--x:26px;--y:30px}
+@keyframes settle{from{transform:translate(var(--x),var(--y)) rotate(var(--r))}to{transform:none}}
+.mini i.k1{--k:var(--c1)}.mini i.k2{--k:var(--c2)}.mini i.k3{--k:var(--c3)}.mini i.k4{--k:var(--c4)}.mini i.k5{--k:var(--c5)}
+@keyframes tint{from{background:#e3e4ef}to{background:var(--k)}}
+.mini i{animation-delay:calc(2.1s + var(--d,0s))}
+.art .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--c1) 0 20%,var(--c2) 0 40%,var(--c3) 0 60%,var(--c4) 0 80%,var(--c5) 0);display:grid;place-items:center;animation:pop .7s var(--ease) 1.7s both;box-shadow:0 0 0 10px var(--night)}
+.art .core span{width:104px;height:104px;border-radius:50%;background:var(--night);display:grid;place-items:center;text-align:center;font:700 14px/1.15 var(--display);color:#fff;padding:8px}
+@keyframes pop{from{transform:translate(-50%,-50%) scale(0)}to{transform:translate(-50%,-50%) scale(1)}}
+.scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);font-size:14px;color:#9a9dcc;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:6px}
+.scrollcue::after{content:"";width:2px;height:26px;background:linear-gradient(#9a9dcc,transparent);animation:cue 1.8s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(6px);opacity:1}}
 
-.specimen{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:start}
-.paper{background:var(--paper);border-radius:3px;box-shadow:0 1px 2px rgba(24,33,29,.08),0 12px 32px -12px rgba(24,33,29,.18);font-family:var(--doc);color:var(--ink)}
-.jd{padding:36px 40px 30px}
-.jd .role{font:600 26px/1.2 var(--doc);margin:0}
-.jd .org{color:var(--soft);font-size:15px;margin:6px 0 22px}
-.jd h2{font:600 16px/1.3 var(--sans);margin:0 0 4px}
-.jd .hint{font:400 14px/1.4 var(--sans);color:var(--soft);margin:0 0 14px}
-.outcomes{list-style:none;margin:0;padding:0}
-.outcomes button{all:unset;box-sizing:border-box;display:block;width:calc(100% + 26px);cursor:pointer;padding:10px 12px 10px 14px;margin:0 -12px 2px -14px;border-left:3px solid transparent;font:400 17px/1.45 var(--doc);border-radius:2px}
-.outcomes button:hover{background:#f6f7f3}
-.outcomes button[aria-pressed="true"]{border-left-color:var(--green)}
-.outcomes button[aria-pressed="true"] span,.doc mark{background:linear-gradient(transparent 12%,var(--marker) 12%,var(--marker) 92%,transparent 92%);color:inherit;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-.outcomes button:focus-visible{outline:3px solid var(--green);outline-offset:0}
+/* ---------- story (sticky) ---------- */
+.story{position:relative;display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.steps{padding:10vh 0 30vh}
+.step{min-height:80vh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .5s ease}
+.step.on{opacity:1}
+.step .n{font:700 15px/1 var(--display);color:var(--soft);margin-bottom:14px}
+.step h2{font-size:clamp(28px,3.2vw,42px);line-height:1.08;font-weight:700}
+.step p{color:var(--soft);font-size:18px;margin:16px 0 0;max-width:28em}
+.stagewrap{position:sticky;top:0;height:100vh;display:flex;align-items:center}
+.stage{position:relative;width:100%;background:#fff;border-radius:22px;padding:26px;box-shadow:0 30px 70px -40px rgba(22,23,46,.45);transition:background .6s ease}
+.stage[data-step="1"]{background:var(--night)}
 
-.derived{display:grid;gap:14px}
-.doc{padding:18px 22px}
-.doc .kind{font:600 13px/1.3 var(--sans);color:var(--soft);margin:0 0 8px;display:flex;justify-content:space-between;gap:12px}
-.doc .kind em{font-style:normal;font-weight:400}
-.doc p{margin:0;font-size:16.5px;line-height:1.45}
-.doc .from{color:var(--soft);text-decoration:line-through;text-decoration-thickness:1px}
-.swap{transition:opacity .18s ease}
-.swap.out{opacity:0}
-.caption{font-size:14px;color:var(--soft);margin:18px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;min-height:40px;margin-bottom:16px}
+.chip{font:600 13.5px/1.2 var(--sans);color:#fff;padding:9px 13px;border-radius:999px;opacity:0;transform:translateY(10px) scale(.9);transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.chip.a{background:var(--c1)}.chip.b{background:var(--c2)}.chip.c{background:var(--c3)}.chip.d{background:var(--c4);color:var(--ink)}.chip.e{background:var(--c5)}
+.stage[data-step="2"] .chip,.stage[data-step="3"] .chip,.stage[data-step="4"] .chip{opacity:1;transform:none}
+.chip:nth-child(2){transition-delay:.1s}.chip:nth-child(3){transition-delay:.2s}.chip:nth-child(4){transition-delay:.3s}.chip:nth-child(5){transition-delay:.4s}
 
-.block{padding:96px 0 0}
-h2.big{font:600 clamp(28px,3.4vw,40px)/1.1 var(--sans);letter-spacing:-.025em;margin:0 0 28px;max-width:20ch}
-.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:40px;border-top:2px solid var(--ink)}
-.steps li{counter-increment:s;padding-top:18px}
-.steps li::before{content:counter(s);display:block;font:600 15px/1 var(--sans);color:var(--green);margin-bottom:10px}
-.steps b{display:block;font-size:19px;margin-bottom:4px}
-.steps span{color:var(--soft)}
-.terms{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:56px}
-.terms p{margin:0;color:var(--soft)}
-.terms b{color:var(--ink);font-weight:600}
-.who{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:start}
-.who p{margin:0 0 12px;font-size:19px;max-width:32em}
-.end{padding:110px 0 40px}
-.end p{margin:0 0 10px;color:var(--soft);font-size:19px;max-width:32em}
-.end a.mail{display:inline-block;font:600 clamp(28px,5.4vw,64px)/1.05 var(--sans);letter-spacing:-.03em;color:var(--green);text-decoration:none;border-bottom:3px solid var(--marker);margin-top:10px;word-break:break-word}
-.end a.mail:hover{border-bottom-color:var(--green)}
-footer{padding:48px 0 40px;font-size:14px;color:var(--soft)}
+.docs{display:grid;grid-template-columns:1fr 1fr;gap:14px;transition:opacity .5s ease}
+.stage[data-step="1"] .docs{opacity:.05}
+.stage[data-step="2"] .docs{opacity:.18}
+.doc{background:var(--light);border-radius:14px;padding:16px 16px 14px;transition:transform .8s var(--ease),background .5s ease;position:relative}
+.stage[data-step="0"] .doc{transform:rotate(var(--r)) translate(var(--x),var(--y))}
+.doc:nth-child(1){--r:-2.5deg;--x:-6px;--y:6px}.doc:nth-child(2){--r:2deg;--x:8px;--y:-4px}.doc:nth-child(3){--r:1.5deg;--x:-4px;--y:10px}.doc:nth-child(4){--r:-2deg;--x:6px;--y:4px}
+.doc h3{font:600 13px/1.2 var(--sans);color:var(--soft);margin:0 0 10px;letter-spacing:0;display:flex;justify-content:space-between}
+.doc .swapbox{display:grid}
+.doc .bad,.doc .good{grid-area:1/1;transition:opacity .45s ease}
+.doc .good{opacity:0}
+.stage[data-step="3"] .doc .bad,.stage[data-step="4"] .doc .bad{opacity:0}
+.stage[data-step="3"] .doc .good,.stage[data-step="4"] .doc .good{opacity:1}
+.doc p{margin:0;font:400 15px/1.42 var(--doc)}
+.doc .good p{margin:0 0 8px;padding-left:12px;border-left:4px solid var(--k)}
+.doc .good p:last-child{margin-bottom:0}
+.k1{--k:var(--c1)}.k2{--k:var(--c2)}.k3{--k:var(--c3)}.k4{--k:var(--c4)}.k5{--k:var(--c5)}
+.flag{position:absolute;top:-9px;right:-6px;background:var(--c5);color:#fff;font:700 12px/1 var(--sans);padding:6px 9px;border-radius:999px;transition:opacity .3s ease,transform .3s ease}
+.stage:not([data-step="0"]) .flag{opacity:0;transform:scale(.6)}
 
-@media (max-width:880px){
-  .head,.specimen,.who{grid-template-columns:1fr}
-  .head{gap:20px;padding-top:32px}
-  .steps,.terms{grid-template-columns:1fr;gap:22px}
-  .block{padding-top:72px}
+.question{position:absolute;inset:0;display:grid;place-items:center;padding:40px;text-align:center;pointer-events:none;opacity:0;transition:opacity .5s ease}
+.question p{font:800 clamp(28px,3.4vw,46px)/1.08 var(--display);color:#fff;margin:0;letter-spacing:-.02em}
+.question p span{display:block;font:500 17px/1.4 var(--sans);color:#9a9dcc;margin-top:18px;letter-spacing:0}
+.stage[data-step="1"] .question{opacity:1}
+.stage[data-step="1"] .chips{opacity:0}
+
+/* change step */
+.alt{display:none}
+.stage[data-step="4"] .k4 .was{display:none}
+.stage[data-step="4"] .k4 .alt,.stage[data-step="4"] .chip.d .alt{display:inline}
+.stage[data-step="4"] .chip.d .was{display:none}
+.stage[data-step="4"] .k4,.stage[data-step="4"] .chip.d{animation:flash 1.2s ease 2}
+@keyframes flash{0%,100%{background-color:transparent}40%{background-color:color-mix(in srgb,var(--c4) 30%,transparent)}}
+.stage[data-step="4"] .chip.d{animation:pulse 1.2s ease 2}
+@keyframes pulse{50%{box-shadow:0 0 0 8px color-mix(in srgb,var(--c4) 35%,transparent)}}
+
+/* ---------- after the story ---------- */
+.band{padding:120px 0}
+.band h2{font-size:clamp(32px,4.2vw,56px);line-height:1.02;font-weight:800;max-width:16ch}
+.band .lead{font-size:20px;color:var(--soft);max-width:34em;margin:20px 0 0}
+.get{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
+.pack{border-radius:22px;padding:34px;color:#fff;position:relative;overflow:hidden}
+.pack.role{background:var(--c1)}
+.pack.fn{background:var(--c3)}
+.pack h3{font-size:26px;font-weight:700;margin-bottom:18px}
+.pack ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.pack li{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:8px 14px;font-size:15px;font-weight:500;opacity:0;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.get.in li{opacity:1;transform:none}
+.get.in li:nth-child(2){transition-delay:.08s}.get.in li:nth-child(3){transition-delay:.16s}.get.in li:nth-child(4){transition-delay:.24s}.get.in li:nth-child(5){transition-delay:.32s}.get.in li:nth-child(6){transition-delay:.4s}
+.pack p{margin:22px 0 0;color:rgba(255,255,255,.85);font-size:16px}
+
+.who{background:#fff}
+.people{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.person{border-top:6px solid var(--k);padding-top:20px}
+.person h3{font-size:22px;font-weight:700}
+.person p{color:var(--soft);margin:10px 0 0}
+
+.path{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;position:relative;counter-reset:p}
+.path::before{content:"";position:absolute;left:22px;right:22px;top:22px;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--c2),var(--c1),var(--c3))}
+.path li{position:relative;counter-increment:p}
+.path li::before{content:counter(p);display:grid;place-items:center;width:50px;height:50px;border-radius:50%;background:var(--k);color:#fff;font:800 20px/1 var(--display);position:relative;box-shadow:0 0 0 6px var(--light);margin-bottom:22px}
+.path h3{font-size:22px;font-weight:700}
+.path p{color:var(--soft);margin:8px 0 0}
+.promise{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:72px}
+.promise div{background:#fff;border-radius:18px;padding:26px}
+.promise h3{font-size:20px;font-weight:700;margin-bottom:8px}
+.promise p{margin:0;color:var(--soft)}
+
+.end{background:var(--night);color:#fff;position:relative;overflow:hidden}
+.end .wrap{position:relative;padding-top:120px;padding-bottom:70px}
+.threads{position:absolute;inset:0;opacity:.9;pointer-events:none}
+.threads i{position:absolute;left:-10%;height:4px;width:120%;border-radius:2px;background:var(--k);opacity:.28;transform:rotate(-8deg)}
+.end .norman{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:start;margin-bottom:110px}
+.end h2{font-size:clamp(32px,4.2vw,56px);line-height:1.02;font-weight:800}
+.end .norman p{color:#c9cbef;font-size:19px;margin:0 0 12px}
+.end .ask p{color:#c9cbef;font-size:20px;margin:0 0 14px;max-width:32em}
+.end a.big{display:inline-block;font:800 clamp(30px,5.6vw,74px)/1.05 var(--display);letter-spacing:-.03em;color:#fff;text-decoration:none;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c5));background-size:100% 6px;background-repeat:no-repeat;background-position:0 100%;padding-bottom:10px;word-break:break-word}
+.end footer{margin-top:90px;color:#8f92c4;font-size:14px}
+
+/* reveal for the hero copy only */
+.hero h1,.hero .sub,.hero .btns{animation:rise .8s var(--ease) both}
+.hero .sub{animation-delay:.12s}.hero .btns{animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:20px;padding:30px 0 90px}
+  .art{height:330px}
+  .story{grid-template-columns:1fr;gap:0}
+  .stagewrap{height:auto;top:0;padding:10px 0;z-index:2;background:var(--light)}
+  .stage{padding:14px;border-radius:16px}
+  .doc{padding:10px 10px 9px;border-radius:10px}
+  .doc h3{font-size:11px;margin-bottom:6px}
+  .doc p{font-size:11.5px;line-height:1.35}
+  .doc .good p{padding-left:8px;border-left-width:3px;margin-bottom:5px}
+  .doc .good p:nth-child(3){display:none}
+  .chip{font-size:11px;padding:6px 9px}
+  .chips{gap:5px;margin-bottom:10px;min-height:28px}
+  .stagewrap{order:1}
+  .steps{order:2;padding:4vh 0 20vh}
+  .step{min-height:60vh}
+  .get,.people,.promise,.end .norman{grid-template-columns:1fr}
+  .path{grid-template-columns:1fr}
+  .path::before{left:22px;right:auto;top:22px;bottom:22px;width:6px;height:auto;background:linear-gradient(var(--c2),var(--c1),var(--c3))}
+  .path li{padding-left:76px}
+  .path li::before{position:absolute;left:0;top:0;margin:0}
+  .band{padding:84px 0}
 }
 @media (max-width:520px){
   .wrap{padding:0 16px}
-  .top a.contact{display:none}
-  .jd{padding:26px 22px 22px}
-  .outcomes button{width:calc(100% + 18px);margin:0 -8px 2px -10px;padding:9px 8px 9px 10px;font-size:16px}
+  .nav a.mail{display:none}
+  .btn.line{margin-left:0}
+  .pack{padding:26px}
+  .question p{font-size:24px}
 }
-@media (prefers-reduced-motion:reduce){.swap{transition:none}}
-@media print{
-  @page{size:A4;margin:12mm}
-  body{background:#fff;font-size:11px}
-  .wrap{padding:0;max-width:none}
-  .top{padding:0 0 4px}
-  .head{padding:6px 0 12px;grid-template-columns:1.2fr 1fr;gap:20px}
-  h1{font-size:34px}
-  .head p{font-size:12px}
-  .specimen{grid-template-columns:1.05fr 1fr!important;gap:12px}
-  .paper{box-shadow:none;border:1px solid var(--rule)}
-  .jd{padding:16px 18px}.jd .role{font-size:17px}.jd .org{margin-bottom:10px;font-size:11px}
-  .jd .hint{display:none}
-  .outcomes button{font-size:11.5px;padding:4px 8px;margin:0 -8px 1px -10px}
-  .doc{padding:9px 12px}.doc p{font-size:11px}.doc .kind{font-size:10px;margin-bottom:4px}
-  .derived{gap:7px}
-  .caption{font-size:10px;margin-top:6px}
-  .block{padding-top:22px;break-inside:avoid}
-  h2.big{font-size:20px;margin-bottom:10px}
-  .steps,.terms{grid-template-columns:repeat(3,1fr)!important;gap:16px}
-  .terms{margin-top:14px}
-  .steps b{font-size:13px}
-  .who{grid-template-columns:1fr 1.5fr!important;gap:16px}.who p{font-size:12px}
-  .end{padding:22px 0 0}.end p{font-size:12px}.end a.mail{font-size:26px}
-  footer{display:none}
-  .doc mark,.outcomes button[aria-pressed="true"] span,.brand svg{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .mini i.k1{background:var(--c1)}.mini i.k2{background:var(--c2)}.mini i.k3{background:var(--c3)}.mini i.k4{background:var(--c4)}.mini i.k5{background:var(--c5)}
+  .pack li{opacity:1;transform:none}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<header class="top">
-  <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#1f4d3a"/><rect x="8" y="9" width="16" height="4" rx="1" fill="#f2e27d"/><rect x="8" y="16" width="10" height="2.5" rx="1" fill="#fff"/><rect x="8" y="21" width="13" height="2.5" rx="1" fill="#fff"/></svg>Talent Engine</a>
-  <a class="contact" href="mailto:hello@talent-engine.app">hello@talent-engine.app</a>
+<header class="hero">
+  <div class="wrap">
+    <nav class="nav">
+      <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#fff" fill-opacity=".08"/><rect x="7" y="7" width="18" height="3" rx="1.5" fill="#3d6bff"/><rect x="7" y="12" width="14" height="3" rx="1.5" fill="#12b5a5"/><rect x="7" y="17" width="16" height="3" rx="1.5" fill="#8a5cf6"/><rect x="7" y="22" width="11" height="3" rx="1.5" fill="#f5a524"/></svg>Talent Engine</a>
+      <a class="mail" href="mailto:hello@talent-engine.app">hello@talent-engine.app</a>
+    </nav>
+    <div class="hero-grid">
+      <div>
+        <h1>Hire, onboard and grow people against the same definition of success.</h1>
+        <p class="sub">Most companies describe a role differently in every document. Talent Engine writes down what success looks like once, then builds every document from it.</p>
+        <div class="btns">
+          <a class="btn solid" href="#story">See how it works</a>
+          <a class="btn line" href="#start">Try it on one of your roles</a>
+        </div>
+      </div>
+      <div class="art" aria-hidden="true">
+        <div class="mini m1"><b>Job ad</b><i class="k1" style="width:90%"></i><i class="k2" style="width:70%;--d:.1s"></i><i class="k4" style="width:80%;--d:.2s"></i></div>
+        <div class="mini m2"><b>Interview guide</b><i class="k1" style="width:80%;--d:.15s"></i><i class="k5" style="width:92%;--d:.25s"></i><i class="k3" style="width:60%;--d:.35s"></i></div>
+        <div class="mini m3"><b>Onboarding plan</b><i class="k1" style="width:75%;--d:.2s"></i><i class="k4" style="width:88%;--d:.3s"></i><i class="k3" style="width:66%;--d:.4s"></i></div>
+        <div class="mini m4"><b>Career path</b><i class="k2" style="width:86%;--d:.25s"></i><i class="k3" style="width:72%;--d:.35s"></i><i class="k5" style="width:58%;--d:.45s"></i></div>
+        <div class="core"><span>What success looks like</span></div>
+      </div>
+    </div>
+  </div>
+  <a class="scrollcue" href="#story">Scroll</a>
 </header>
 
-<div class="head">
-  <h1>Define success once. Every document follows from it.</h1>
-  <p>Write down what must be true after a year in the role. Talent Engine builds the job ad, interview guides, onboarding plan and career path from that, so every document asks for the same thing.</p>
-</div>
+<main>
+<section class="story wrap" id="story" aria-label="How Talent Engine works">
+  <div class="steps">
+    <article class="step" data-step="0">
+      <div class="n">One role, four documents</div>
+      <h2>Here is a senior engineer, as most companies describe the job.</h2>
+      <p>The ad wants a rockstar. The interview asks about weaknesses. Onboarding is a laptop and a wiki. Promotion is time served. Four documents, four different jobs.</p>
+    </article>
+    <article class="step" data-step="1">
+      <div class="n">The missing question</div>
+      <h2>They disagree because nobody answered one question.</h2>
+      <p>Each document was written at a different time, by a different person. None of them started from what the role is for.</p>
+    </article>
+    <article class="step" data-step="2">
+      <div class="n">The answer</div>
+      <h2>Answer it in outcomes you could check after a year.</h2>
+      <p>For this role, five of them. Each one is specific enough to measure, and each gets its own colour.</p>
+    </article>
+    <article class="step" data-step="3">
+      <div class="n">The cascade</div>
+      <h2>Then build every document from those five.</h2>
+      <p>Follow the colours. Every line in the ad, every interview question, every onboarding task and every step to the next level traces back to an outcome.</p>
+    </article>
+    <article class="step" data-step="4">
+      <div class="n">When things change</div>
+      <h2>When the role changes, change the outcome once.</h2>
+      <p>The cost target moves from 20% to 30%. The ad, the interview and the onboarding plan follow, and nothing drifts out of step.</p>
+    </article>
+  </div>
 
-<div class="specimen">
-  <article class="paper jd" aria-labelledby="jd-role">
-    <p class="role" id="jd-role">Senior Platform Engineer</p>
-    <p class="org">Teratai Digital Bank, Kuala Lumpur</p>
-    <h2>First 12 months: what must be true</h2>
-    <p class="hint">Choose an outcome to see where it goes.</p>
-    <ul class="outcomes" id="outcomes"></ul>
-  </article>
-  <div class="derived swap" id="derived" aria-live="polite"></div>
-</div>
-<p class="caption">Teratai Digital Bank is a fictional organisation. Every document for this role is built from these five outcomes.</p>
-
-<section class="block" aria-labelledby="start">
-  <h2 class="big" id="start">Start with one of your own roles.</h2>
-  <ol class="steps">
-    <li><b>A free sample</b><span>Send one real job description. You get the full set back, side by side with what you use today.</span></li>
-    <li><b>Hiring packs</b><span>For the roles you are recruiting now, within three working days of a short call.</span></li>
-    <li><b>A whole function</b><span>Every role and level in one team, then kept current as roles change.</span></li>
-  </ol>
-  <div class="terms">
-    <p><b>AI drafts. Your HR validates.</b> Nothing goes live until people who know your organisation sign it off.</p>
-    <p><b>Roles, not people.</b> We work from job descriptions and your structure. No employee data.</p>
-    <p><b>Documents, not software.</b> Nobody learns a tool. You own everything delivered.</p>
+  <div class="stagewrap">
+    <div class="stage" id="stage" data-step="0" aria-hidden="true">
+      <div class="chips">
+        <span class="chip a">Reliable services</span>
+        <span class="chip b">Teams ship on their own</span>
+        <span class="chip c">Audit-ready</span>
+        <span class="chip d">Cost <span class="was">−20%</span><span class="alt">−30%</span></span>
+        <span class="chip e">Calm incidents</span>
+      </div>
+      <div class="docs">
+        <div class="doc"><span class="flag">Rockstar?</span>
+          <h3>Job ad</h3>
+          <div class="swapbox">
+            <div class="bad"><p>We're looking for a DevOps rockstar who thrives in a fast-paced environment and loves new tech!</p></div>
+            <div class="good">
+              <p class="k1">Set service levels for every customer-facing service, and hit them.</p>
+              <p class="k2">Build the road that lets 60 engineers ship safely, every day.</p>
+              <p class="k4">Cut cloud cost per customer by <span class="was">a fifth</span><span class="alt">a third</span>.</p>
+            </div>
+          </div>
+        </div>
+        <div class="doc"><span class="flag">Weakness?</span>
+          <h3>Interview guide</h3>
+          <div class="swapbox">
+            <div class="bad"><p>Tell me about yourself. What is your greatest weakness? Where do you see yourself in five years?</p></div>
+            <div class="good">
+              <p class="k1">Tell me about a service level you set. What happened when it slipped?</p>
+              <p class="k5">Walk me through the worst incident you led, minute by minute.</p>
+              <p class="k4">When did a cloud bill last surprise you? What did you change?</p>
+            </div>
+          </div>
+        </div>
+        <div class="doc"><span class="flag">Laptop?</span>
+          <h3>Onboarding plan</h3>
+          <div class="swapbox">
+            <div class="bad"><p>Week 1: collect laptop, HR induction, read the team wiki. Then get stuck in.</p></div>
+            <div class="good">
+              <p class="k1">Days 31–60: agree service levels for the three most critical journeys.</p>
+              <p class="k4">Turn on cost tagging; send the first spend report by team<span class="alt">, against the 30% target</span>.</p>
+              <p class="k3">Days 61–90: close one audit finding with a platform control.</p>
+            </div>
+          </div>
+        </div>
+        <div class="doc"><span class="flag">Time served?</span>
+          <h3>Career path</h3>
+          <div class="swapbox">
+            <div class="bad"><p>Eligible for promotion after two years in role, subject to manager recommendation.</p></div>
+            <div class="good">
+              <p class="k2">From building the road to making it the standard every team follows.</p>
+              <p class="k3">From passing the audit to shaping how the bank meets risk rules.</p>
+              <p class="k5">From mentoring the team to growing other senior engineers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="question"><p>"If this person is successful, what is true?"<span>The question every document should start from.</span></p></div>
+    </div>
   </div>
 </section>
 
-<section class="block who" aria-labelledby="who">
-  <h2 class="big" id="who">Run by Norman Noble.</h2>
-  <div>
-    <p>Norman is a technology leader who has scaled engineering and people systems across APAC.</p>
-    <p>Every engagement starts with a conversation with him, and he oversees every document delivered.</p>
+<section class="band">
+  <div class="wrap">
+    <h2>Not just the job ad. Everything the role touches.</h2>
+    <p class="lead">You receive finished documents, written in your language and built from your strategy. Nobody has to learn a tool, and you own everything delivered.</p>
+    <div class="get" id="get">
+      <div class="pack role">
+        <h3>For each role you are hiring</h3>
+        <ul><li>Outcome-based job description</li><li>Job ad and LinkedIn version</li><li>An interview guide for each stage</li><li>Scorecard and debrief sheet</li><li>30-60-90 day onboarding plan</li></ul>
+        <p>Within three working days of a short call.</p>
+      </div>
+      <div class="pack fn">
+        <h3>For a whole function</h3>
+        <ul><li>Every role and level</li><li>Career paths</li><li>Progression guides</li><li>Readiness checks</li><li>Reviews and improvement plans</li><li>Offboarding and handover</li></ul>
+        <p>Kept current as roles change.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="end" aria-labelledby="send">
-  <p id="send">Send a job description you are hiring for, or one you think is weak. We'll send back the full set, free.</p>
-  <a class="mail" href="mailto:hello@talent-engine.app?subject=A%20role%20for%20Talent%20Engine">hello@talent-engine.app</a>
+<section class="band who">
+  <div class="wrap">
+    <h2>For whoever owns the hire.</h2>
+    <div class="people">
+      <div class="person k1"><h3>HR leaders</h3><p>One consistent system across hiring, growth and performance that you can explain and defend, without a six-month project.</p></div>
+      <div class="person k2"><h3>CEOs</h3><p>Hiring and promotion tied to what the business needs delivered, not to job titles or who interviews best.</p></div>
+      <div class="person k5"><h3>Function leaders</h3><p>For a CTO, CFO or head of sales: roles defined in your terms, interviews that test them, and a career path your people believe.</p></div>
+    </div>
+  </div>
 </section>
 
-<footer>© 2026 Talent Engine</footer>
-</div>
+<section class="band" id="start">
+  <div class="wrap">
+    <h2>Start with one of your own roles.</h2>
+    <p class="lead">Each step stands on its own. Decide on the next one after you have seen the last.</p>
+    <ol class="path">
+      <li class="k2"><h3>A free sample</h3><p>Send one real job description. You get the full set back, side by side with what you use today.</p></li>
+      <li class="k1"><h3>Hiring packs</h3><p>For the roles you are recruiting now.</p></li>
+      <li class="k3"><h3>A whole function</h3><p>Every role and level in one team, on the same outcomes.</p></li>
+    </ol>
+    <div class="promise">
+      <div><h3>AI drafts. Your HR validates.</h3><p>Nothing goes live until people who know your organisation sign it off.</p></div>
+      <div><h3>Roles, not people.</h3><p>We work from job descriptions and your structure. No employee data.</p></div>
+      <div><h3>Your context, not a template.</h3><p>Built from your strategy and your roles, in your language.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="end">
+  <div class="threads" aria-hidden="true">
+    <i class="k1" style="top:18%"></i><i class="k2" style="top:30%"></i><i class="k3" style="top:42%"></i><i class="k4" style="top:54%"></i><i class="k5" style="top:66%"></i>
+  </div>
+  <div class="wrap">
+    <div class="norman">
+      <h2>Run by Norman Noble.</h2>
+      <div>
+        <p>Norman is a technology leader who has scaled engineering and people systems across APAC.</p>
+        <p>Every engagement starts with a conversation with him, and he oversees every document delivered.</p>
+      </div>
+    </div>
+    <div class="ask">
+      <p>Send a job description you are hiring for, or one you think is weak. We'll send back the full set, free.</p>
+      <a class="big" href="mailto:hello@talent-engine.app?subject=A%20role%20for%20Talent%20Engine">hello@talent-engine.app</a>
+    </div>
+    <footer>© 2026 Talent Engine. Teratai Digital Bank, used in the example above, is fictional.</footer>
+  </div>
+</section>
 
 <script>
-const O = [
-  { jd: "Every customer-facing service has an agreed service level, measured on a dashboard the business reads",
-    ad: "Set <mark>service levels for every customer-facing service</mark>, and hit them.",
-    iv: ["Hiring manager", "Tell me about a <mark>service level</mark> you set. Who agreed it, and what did you do when the error budget ran out?"],
-    ob: ["Days 31 to 60", "Agree <mark>service levels for the three most critical journeys</mark>."],
-    pg: ["Senior to Staff", "<span class='from'>Is my team's platform reliable?</span> Is the bank's engineering <mark>reliable, because of standards I set?</mark>"] },
-  { jd: "Product teams deploy to production on their own, several times a day, through a paved road this engineer built",
-    ad: "Build <mark>the paved road that lets 60 engineers ship safely</mark>, several times a day.",
-    iv: ["Technical exercise", "Design the path from commit to production for a new service. <mark>What would stop a product team using it on its own?</mark>"],
-    ob: ["Days 61 to 90", "Agree <mark>the paved-road design with two product teams</mark>."],
-    pg: ["Senior to Staff", "<span class='from'>Builds the paved road.</span> <mark>Makes it the standard every team follows.</mark>"] },
-  { jd: "Technology risk controls pass internal audit and the regulator's review with no high-severity findings",
-    ad: "Make <mark>security and audit controls part of the platform</mark>, not a project before each review.",
-    iv: ["Risk and security", "Show us <mark>audit evidence your platform produced on its own</mark>. What did the auditor still ask for?"],
-    ob: ["Days 61 to 90", "Close one open audit finding <mark>through a platform control, not a manual fix</mark>."],
-    pg: ["Senior to Staff", "<span class='from'>Passes the audit.</span> <mark>Shapes how the bank meets technology risk rules.</mark>"] },
-  { jd: "Cloud cost per active customer down by at least 20%, with each team seeing its own spend",
-    ad: "Cut <mark>cloud cost per customer by a fifth</mark>, and show every team its own spend.",
-    iv: ["Risk and security", "When did a cloud bill last surprise you? <mark>What did you change so it could not happen again?</mark>"],
-    ob: ["Days 31 to 60", "Turn on cost tagging and <mark>send the first spend report by team</mark>."],
-    pg: ["Senior to Staff", "<span class='from'>Solves the problems they are given.</span> <mark>Finds the problems nobody has named yet.</mark>"] },
-  { jd: "Every major incident reviewed without blame, with fixes tracked to closure",
-    ad: "Join a small, senior team that values <mark>calm engineering over heroics</mark>.",
-    iv: ["Hiring manager", "Walk me through the <mark>worst incident you led</mark>. Minute by minute, what did you do?"],
-    ob: ["Days 61 to 90", "<mark>Lead one incident review</mark> end to end."],
-    pg: ["Senior to Staff", "<span class='from'>Mentors engineers on the team.</span> <mark>Grows other senior engineers towards Staff.</mark>"] }
-];
-const list = document.getElementById('outcomes');
-const out = document.getElementById('derived');
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-function docs(o){
-  return `
-  <div class="paper doc"><p class="kind">Job ad</p><p>${o.ad}</p></div>
-  <div class="paper doc"><p class="kind">Interview guide <em>${o.iv[0]} stage</em></p><p>${o.iv[1]}</p></div>
-  <div class="paper doc"><p class="kind">Onboarding plan <em>${o.ob[0]}</em></p><p>${o.ob[1]}</p></div>
-  <div class="paper doc"><p class="kind">Progression guide <em>${o.pg[0]}</em></p><p>${o.pg[1]}</p></div>`;
-}
-function select(i, animate){
-  [...list.querySelectorAll('button')].forEach((b,j)=>b.setAttribute('aria-pressed', j===i));
-  if(!animate || reduce){ out.innerHTML = docs(O[i]); return; }
-  out.classList.add('out');
-  setTimeout(()=>{ out.innerHTML = docs(O[i]); out.classList.remove('out'); }, 180);
-}
-O.forEach((o,i)=>{
-  const li=document.createElement('li');
-  const b=document.createElement('button');
-  b.type='button'; b.innerHTML=`<span>${o.jd}</span>`;
-  b.addEventListener('click',()=>select(i,true));
-  li.appendChild(b); list.appendChild(li);
-});
-select(0,false);
+(function(){
+  var stage=document.getElementById('stage');
+  var steps=[].slice.call(document.querySelectorAll('.step'));
+  function set(n){
+    stage.setAttribute('data-step',n);
+    steps.forEach(function(s){s.classList.toggle('on',s.getAttribute('data-step')===n)});
+  }
+  if(!('IntersectionObserver' in window)){set('3');return;}
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting) set(e.target.getAttribute('data-step')); });
+  },{rootMargin: matchMedia('(max-width:900px)').matches ? '-72% 0px -22% 0px' : '-45% 0px -45% 0px'});
+  steps.forEach(function(s){io.observe(s)});
+  var q=location.search.match(/step=(\d)/); set(q?q[1]:'0'); if(q) io.disconnect();
+  var get=document.getElementById('get');
+  new IntersectionObserver(function(es,o){
+    es.forEach(function(e){ if(e.isIntersecting){get.classList.add('in');o.disconnect();} });
+  },{threshold:.3}).observe(get);
+})();
 </script>
 </body>
 </html>
