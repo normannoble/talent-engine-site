@@ -254,3 +254,6 @@ footer{padding:50px 0 40px;text-align:center;color:var(--soft);font-size:14px}
   .steps2{grid-template-columns:1fr!important}
 }
 @media (max-width:560px){.logo .lt{display:none}}
+.hero .h1-home{font-size:clamp(46px,4.8vw,80px)}
+.hero .lines{max-width:31em}
+@media (min-width:961px){.nw{white-space:nowrap}}
