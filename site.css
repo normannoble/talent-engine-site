@@ -277,3 +277,12 @@ footer{padding:50px 0 40px;text-align:center;color:var(--soft);font-size:14px}
   .scrap p{overflow-wrap:anywhere}
   .note{white-space:normal;max-width:100%}
 }
+
+/* hiring page: four scraps, a diagonal cascade so none overlap on desktop (#45 follow-up) */
+@media (min-width:561px){
+  .problem .mess.four{height:500px}
+  .problem .mess.four .s1{left:0;top:0;bottom:auto;right:auto}
+  .problem .mess.four .s2{right:0;top:118px;bottom:auto;left:auto}
+  .problem .mess.four .s3{left:3%;top:240px;bottom:auto;right:auto}
+  .problem .mess.four .s4{right:2%;top:362px;bottom:auto;left:auto}
+}
